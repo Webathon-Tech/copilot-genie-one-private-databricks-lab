@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="860" viewBox="0 0 1500 860" role="img" aria-label="Permission model. Left: Unity Catalog grants give grp-genie-drilling the drilling schema, grp-genie-completions the completions schema including the well_header view, and grp-genie-managers all three schemas. Right: Genie sharing gives each domain group its own agent and managers all three agents. Bottom: verified results for drill.user, comp.user and mgr.user, and three rules.">
+  <defs>
+    <style>
+      text{font-family:'Segoe UI',Helvetica,Arial,sans-serif}
+      .title{font-size:25px;font-weight:700;fill:#0f1f2a}
+      .subtitle{font-size:14px;fill:#5b6b76}
+      .zl{font-size:12px;font-weight:700;letter-spacing:.08em}
+      .h{font-size:14px;font-weight:600}.h:not([fill]){fill:#0f1f2a}
+      .s{font-size:12px}.s:not([fill]){fill:#5b6b76}
+      .t{font-size:12.5px}.t:not([fill]){fill:#33424c}
+      .m{font-family:Consolas,'Cascadia Mono',Menlo,monospace;font-size:11.5px}.m:not([fill]){fill:#3d4b55}
+      .lbl{font-size:11.5px;font-weight:600}.lbl:not([fill]){fill:#33424c}
+      .node{fill:#fff;stroke:#c9d3da;stroke-width:1.2}
+      .grp{fill:#fff;stroke:#94b6ea;stroke-width:1.3}
+      .zone{stroke-width:1.4;stroke-dasharray:7 5}
+      .z-uc{fill:#f8f5fd;stroke:#bba6e0}
+      .z-gen{fill:#fef6f1;stroke:#efb08c}
+      .schema{fill:#fff;stroke:#bba6e0;stroke-width:1.3}
+      .agent{fill:#fff;stroke:#efb08c;stroke-width:1.3}
+      .chip{fill:#f6f2fc;stroke:#d6c9ee}
+      .gp{stroke:#7a4fc4;stroke-width:2;fill:none}
+      .go{stroke:#d9622b;stroke-width:2;fill:none}
+    </style>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="140%"><feDropShadow dx="0" dy="1.5" stdDeviation="2.2" flood-color="#0f1f2a" flood-opacity=".10"/></filter>
+    <marker id="mp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7a4fc4"/></marker>
+    <marker id="mo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d9622b"/></marker>
+    <marker id="mk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7b8a96"/></marker>
+    <symbol id="ok" viewBox="-9 -9 18 18"><circle r="8.5" fill="#1f8a5b"/><path d="M-4 0.2 L-1.2 3 L4 -2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="users" viewBox="-16 -12 32 24"><circle cx="-5" cy="-4" r="4.5" fill="#5b7a99"/><path d="M-13 10 C-13 1 3 1 3 10 Z" fill="#5b7a99"/><circle cx="6" cy="-5" r="4" fill="#8aa3bb"/><path d="M0 9 C1 1 15 1 14 9 Z" fill="#8aa3bb"/></symbol>
+    <symbol id="tbl" viewBox="0 0 14 12"><rect x=".5" y=".5" width="13" height="11" rx="1.5" fill="#fff" stroke="#7a4fc4"/><path d="M.5 4 H13.5 M5 4 V11.5" stroke="#7a4fc4"/></symbol>
+  </defs>
+
+  <rect x="0.5" y="0.5" width="1499" height="859" rx="18" fill="#ffffff" stroke="#dfe5ea"/>
+  <text class="title" x="40" y="50">Permission model · what each user can see and read</text>
+  <text class="subtitle" x="40" y="75">Two independent controls. Unity Catalog grants decide which data a user can read; Genie sharing decides which agents they see. Genie One is limited by grants only.</text>
+
+  <!-- ===== Panel A: Unity Catalog grants ===== -->
+  <rect class="zone z-uc" x="30" y="100" width="720" height="420" rx="14"/>
+  <text class="zl" x="50" y="126" fill="#6a46b0">① DATA ACCESS · UNITY CATALOG GRANTS</text>
+  <text class="s" x="50" y="145">USE SCHEMA + SELECT per schema · catalog dbw_genie_demo (workspace users only have USE CATALOG)</text>
+
+  <rect class="grp" filter="url(#sh)" x="50" y="170" width="220" height="64" rx="10"/>
+  <use href="#users" x="62" y="188" width="32" height="24"/>
+  <text class="h" x="104" y="197">grp-genie-drilling</text><text class="s" x="104" y="216">drill.user</text>
+  <rect class="grp" filter="url(#sh)" x="50" y="289" width="220" height="64" rx="10"/>
+  <use href="#users" x="62" y="307" width="32" height="24"/>
+  <text class="h" x="104" y="316">grp-genie-completions</text><text class="s" x="104" y="335">comp.user</text>
+  <rect class="grp" filter="url(#sh)" x="50" y="408" width="220" height="64" rx="10"/>
+  <use href="#users" x="62" y="426" width="32" height="24"/>
+  <text class="h" x="104" y="435">grp-genie-managers</text><text class="s" x="104" y="454">mgr.user</text>
+
+  <rect class="schema" filter="url(#sh)" x="420" y="160" width="300" height="84" rx="10"/>
+  <text class="h" x="438" y="184">drilling</text><text class="s" x="502" y="184">schema</text>
+  <rect class="chip" x="438" y="195" width="264" height="38" rx="6"/>
+  <use href="#tbl" x="448" y="202" width="14" height="12"/><text class="m" x="468" y="212">wells</text>
+  <text class="s" x="448" y="227" style="font-size:11px">well_id, play, rig, depth, drilling days</text>
+
+  <rect class="schema" filter="url(#sh)" x="420" y="262" width="300" height="122" rx="10"/>
+  <text class="h" x="438" y="286">completions</text><text class="s" x="528" y="286">schema</text>
+  <rect class="chip" x="438" y="297" width="264" height="38" rx="6"/>
+  <use href="#tbl" x="448" y="304" width="14" height="12"/><text class="m" x="468" y="314">completions</text>
+  <text class="s" x="448" y="329" style="font-size:11px">stages, proppant, fluid, duration</text>
+  <rect class="chip" x="438" y="340" width="264" height="38" rx="6" style="stroke:#7a4fc4;stroke-dasharray:4 3"/>
+  <use href="#tbl" x="448" y="347" width="14" height="12"/><text class="m" x="468" y="357">well_header · view</text>
+  <text class="s" x="448" y="372" style="font-size:11px">well_id, play, rig only</text>
+
+  <rect class="schema" filter="url(#sh)" x="420" y="402" width="300" height="84" rx="10"/>
+  <text class="h" x="438" y="426">production</text><text class="s" x="518" y="426">schema</text>
+  <rect class="chip" x="438" y="437" width="264" height="38" rx="6"/>
+  <use href="#tbl" x="448" y="444" width="14" height="12"/><text class="m" x="468" y="454">monthly_volumes</text>
+  <text class="s" x="448" y="469" style="font-size:11px">oil_bbl, gas_mcf per well per month</text>
+
+  <line class="gp" x1="270" y1="202" x2="418" y2="202" marker-end="url(#mp)"/>
+  <line class="gp" x1="270" y1="321" x2="418" y2="321" marker-end="url(#mp)"/>
+  <path class="gp" d="M270,440 C345,440 340,214 418,214" marker-end="url(#mp)" opacity=".8"/>
+  <path class="gp" d="M270,440 C345,440 340,334 418,334" marker-end="url(#mp)" opacity=".8"/>
+  <line class="gp" x1="270" y1="444" x2="418" y2="444" marker-end="url(#mp)"/>
+  <path d="M702,359 H738 V214 H704" fill="none" stroke="#7b8a96" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#mk)"/>
+  <text class="lbl" x="0" y="0" transform="translate(733 287) rotate(90)" text-anchor="middle" style="font-size:10.5px;fill:#5b6b76">reads with owner's rights</text>
+
+  <!-- ===== Panel B: Genie sharing ===== -->
+  <rect class="zone z-gen" x="770" y="100" width="700" height="420" rx="14"/>
+  <text class="zl" x="790" y="126" fill="#c0541f">② AGENT VISIBILITY · GENIE SHARING (CAN RUN)</text>
+  <text class="s" x="790" y="145">Each agent contains only tables that every one of its users can read.</text>
+
+  <rect class="grp" filter="url(#sh)" x="790" y="170" width="220" height="64" rx="10"/>
+  <use href="#users" x="802" y="188" width="32" height="24"/>
+  <text class="h" x="844" y="197">grp-genie-drilling</text><text class="s" x="844" y="216">drill.user</text>
+  <rect class="grp" filter="url(#sh)" x="790" y="289" width="220" height="64" rx="10"/>
+  <use href="#users" x="802" y="307" width="32" height="24"/>
+  <text class="h" x="844" y="316">grp-genie-completions</text><text class="s" x="844" y="335">comp.user</text>
+  <rect class="grp" filter="url(#sh)" x="790" y="408" width="220" height="64" rx="10"/>
+  <use href="#users" x="802" y="426" width="32" height="24"/>
+  <text class="h" x="844" y="435">grp-genie-managers</text><text class="s" x="844" y="454">mgr.user</text>
+
+  <rect class="agent" filter="url(#sh)" x="1160" y="160" width="290" height="84" rx="10"/>
+  <text class="h" x="1178" y="186">Drilling Performance</text>
+  <text class="m" x="1178" y="208">drilling.wells</text>
+  <text class="s" x="1178" y="228" style="font-size:11px">rigs, depth, drilling days</text>
+  <rect class="agent" filter="url(#sh)" x="1160" y="262" width="290" height="122" rx="10"/>
+  <text class="h" x="1178" y="288">Completions</text>
+  <text class="m" x="1178" y="310">completions.completions</text>
+  <text class="m" x="1178" y="330">completions.well_header</text>
+  <text class="s" x="1178" y="352" style="font-size:11px">well_header view: play and rig</text>
+  <text class="s" x="1178" y="368" style="font-size:11px">without the drilling schema</text>
+  <rect class="agent" filter="url(#sh)" x="1160" y="402" width="290" height="84" rx="10"/>
+  <text class="h" x="1178" y="428">Production</text>
+  <text class="m" x="1178" y="450">production.monthly_volumes</text>
+  <text class="s" x="1178" y="470" style="font-size:11px">month 0 = completion month</text>
+
+  <line class="go" x1="1010" y1="202" x2="1158" y2="202" marker-end="url(#mo)"/>
+  <line class="go" x1="1010" y1="321" x2="1158" y2="321" marker-end="url(#mo)"/>
+  <path class="go" d="M1010,440 C1085,440 1080,214 1158,214" marker-end="url(#mo)" opacity=".8"/>
+  <path class="go" d="M1010,440 C1085,440 1080,334 1158,334" marker-end="url(#mo)" opacity=".8"/>
+  <line class="go" x1="1010" y1="444" x2="1158" y2="444" marker-end="url(#mo)"/>
+
+  <!-- ===== Result matrix ===== -->
+  <text class="zl" x="30" y="552" fill="#33424c">③ RESULT · TESTED AS EACH USER (STEP 8)</text>
+  <rect class="node" x="30" y="564" width="1440" height="206" rx="12"/>
+  <rect x="31" y="565" width="1438" height="36" rx="11" fill="#f1f4f7"/>
+  <rect x="31" y="585" width="1438" height="16" fill="#f1f4f7"/>
+  <g class="lbl" style="font-size:12px;fill:#5b6b76;letter-spacing:.04em">
+    <text x="50" y="588">USER</text><text x="210" y="588">AGENTS THEY SEE</text><text x="430" y="588">DATA THEY CAN READ</text><text x="690" y="588">OBSERVED BEHAVIOUR</text><text x="1350" y="588">RESULT</text>
+  </g>
+  <line x1="30" y1="601" x2="1470" y2="601" stroke="#dfe5ea"/>
+  <text class="h" x="50" y="628">drill.user</text>
+  <text class="t" x="210" y="628">Drilling Performance</text>
+  <text class="m" x="430" y="628">drilling.*</text>
+  <text class="t" x="690" y="621">Drilling questions answered (Rig 12, 17.52 days). A completions question in Genie One</text>
+  <text class="t" x="690" y="639">returned no completions data; Genie One answered from drilling days instead (8.1 to 8.3).</text>
+  <use href="#ok" x="1350" y="618" width="18" height="18"/><text class="lbl" x="1375" y="632" fill="#1f7a4d">pass</text>
+  <line x1="50" y1="657" x2="1450" y2="657" stroke="#eef2f5"/>
+  <text class="h" x="50" y="684">comp.user</text>
+  <text class="t" x="210" y="684">Completions</text>
+  <text class="m" x="430" y="684">completions.* (incl. view)</text>
+  <text class="t" x="690" y="677">Completion questions and proppant by play answered. Production question refused</text>
+  <text class="t" x="690" y="695">in Genie One; drilling days refused in the Completions agent (8.4 to 8.7).</text>
+  <use href="#ok" x="1350" y="674" width="18" height="18"/><text class="lbl" x="1375" y="688" fill="#1f7a4d">pass</text>
+  <line x1="50" y1="713" x2="1450" y2="713" stroke="#eef2f5"/>
+  <text class="h" x="50" y="740">mgr.user</text>
+  <text class="t" x="210" y="740">All three agents</text>
+  <text class="m" x="430" y="740">all three schemas</text>
+  <text class="t" x="690" y="733">Cross-domain question in Genie One combined completions and production and applied</text>
+  <text class="t" x="690" y="751">the Production agent's month-0 rule (8.8 and 8.9).</text>
+  <use href="#ok" x="1350" y="730" width="18" height="18"/><text class="lbl" x="1375" y="744" fill="#1f7a4d">pass</text>
+
+  <!-- ===== Rules ===== -->
+  <rect x="30" y="784" width="468" height="60" rx="10" fill="#f1f6fe" stroke="#94b6ea"/>
+  <text class="lbl" x="48" y="806" fill="#1d5fbf">RULE 1</text>
+  <text class="t" x="48" y="826">An agent works only for users who can read every table in it.</text>
+  <rect x="516" y="784" width="468" height="60" rx="10" fill="#f8f5fd" stroke="#bba6e0"/>
+  <text class="lbl" x="534" y="806" fill="#6a46b0">RULE 2</text>
+  <text class="t" x="534" y="826">The user's own permissions always win over an agent's setup.</text>
+  <rect x="1002" y="784" width="468" height="60" rx="10" fill="#fef6f1" stroke="#efb08c"/>
+  <text class="lbl" x="1020" y="806" fill="#c0541f">RULE 3</text>
+  <text class="t" x="1020" y="826">Genie One reads any table the user can, in an agent or not.</text>
+</svg>

@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="830" viewBox="0 0 1500 830" role="img" aria-label="Three ways to connect Copilot Studio to the private workspace. A, fully private: Power Platform VNet support delegated subnets reach the workspace through a private endpoint; nothing faces the internet. B, hybrid: Microsoft connector IP ranges reach a public workspace endpoint restricted by an IP access list. C, MCP gateway: Azure API Management is the only public part and reaches the private workspace through a private endpoint.">
+  <defs>
+    <style>
+      text{font-family:'Segoe UI',Helvetica,Arial,sans-serif}
+      .title{font-size:25px;font-weight:700;fill:#0f1f2a}
+      .subtitle{font-size:14px;fill:#5b6b76}
+      .zl{font-size:12px;font-weight:700;letter-spacing:.08em}
+      .h{font-size:14px;font-weight:600}.h:not([fill]){fill:#0f1f2a}
+      .s{font-size:12px}.s:not([fill]){fill:#5b6b76}
+      .t{font-size:12.5px}.t:not([fill]){fill:#33424c}
+      .m{font-family:Consolas,'Cascadia Mono',Menlo,monospace;font-size:11.5px}.m:not([fill]){fill:#3d4b55}
+      .lbl{font-size:11.5px;font-weight:600}.lbl:not([fill]){fill:#33424c}
+      .node{fill:#fff;stroke:#c9d3da;stroke-width:1.2}
+      .a{stroke:#2563c9;stroke-width:2;fill:none}
+      .pl{stroke:#1f8a5b;stroke-width:2.4;fill:none}
+      .pub{fill:#fdeedb;stroke:#e3a24f;stroke-width:1.3;stroke-dasharray:6 4}
+      .big{font-size:18px;font-weight:700}
+    </style>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="140%"><feDropShadow dx="0" dy="1.5" stdDeviation="2.2" flood-color="#0f1f2a" flood-opacity=".10"/></filter>
+    <marker id="mb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563c9"/></marker>
+    <marker id="mg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f8a5b"/></marker>
+    <marker id="mo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d9822b"/></marker>
+    <symbol id="lock" viewBox="-8 -9 16 18"><rect x="-6" y="-1" width="12" height="9" rx="2" fill="#1f8a5b"/><path d="M-3.5 -1 V-4 A3.5 3.5 0 0 1 3.5 -4 V-1" stroke="#1f8a5b" stroke-width="1.8" fill="none"/></symbol>
+    <symbol id="unlock" viewBox="-8 -9 16 18"><rect x="-6" y="-1" width="12" height="9" rx="2" fill="#d9822b"/><path d="M-3.5 -1 V-4 A3.5 3.5 0 0 1 3.5 -4" stroke="#d9822b" stroke-width="1.8" fill="none"/></symbol>
+  </defs>
+
+  <rect x="0.5" y="0.5" width="1499" height="829" rx="18" fill="#ffffff" stroke="#dfe5ea"/>
+  <text class="title" x="40" y="50">Three ways to connect Copilot to a private Databricks workspace</text>
+  <text class="subtitle" x="40" y="75">Amber shading marks what faces the internet. Option A is built and verified. B and C are fallbacks if VNet support isn't possible.</text>
+  <text class="zl" x="265" y="104" fill="#5b6b76">CONNECTION PATH  →  WHERE TRAFFIC ENTERS THE WORKSPACE</text>
+  <text class="zl" x="1030" y="104" fill="#5b6b76">TRADE-OFFS</text>
+
+  <!-- ================= ROW A ================= -->
+  <rect x="30" y="114" width="1440" height="196" rx="14" fill="#f2faf5" stroke="#86c4a2" stroke-width="1.3"/>
+  <circle cx="74" cy="160" r="24" fill="#1f8a5b"/><text class="big" x="74" y="166" text-anchor="middle" fill="#fff">A</text>
+  <text class="h" x="108" y="157" style="font-size:17px">Fully private</text>
+  <text class="s" x="108" y="176">via VNet support</text>
+  <rect x="50" y="200" width="176" height="24" rx="12" fill="#1f8a5b"/>
+  <text class="lbl" x="138" y="216" text-anchor="middle" fill="#fff">CHOSEN · VERIFIED</text>
+  <text class="s" x="50" y="250">All calls from the delegated</text>
+  <text class="s" x="50" y="268">subnet; public access off</text>
+
+  <rect class="node" filter="url(#sh)" x="265" y="169" width="160" height="86" rx="10"/>
+  <text class="h" x="345" y="196" text-anchor="middle">Copilot Studio</text>
+  <text class="s" x="345" y="215" text-anchor="middle">“Genie Copilot” environment</text>
+  <text class="s" x="345" y="232" text-anchor="middle">Managed Environment</text>
+  <rect class="node" filter="url(#sh)" x="455" y="169" width="160" height="86" rx="10" stroke="#1f8a5b" stroke-width="1.5"/>
+  <text class="h" x="535" y="196" text-anchor="middle">VNet support</text>
+  <text class="s" x="535" y="215" text-anchor="middle">delegated subnets</text>
+  <text class="s" x="535" y="232" text-anchor="middle">Canada Central + East</text>
+  <rect class="node" filter="url(#sh)" x="645" y="169" width="160" height="86" rx="10" stroke="#1f8a5b" stroke-width="1.5"/>
+  <text class="h" x="725" y="196" text-anchor="middle">Private endpoint</text>
+  <text class="m" x="725" y="215" text-anchor="middle">databricks_ui_api</text>
+  <text class="m" x="725" y="232" text-anchor="middle">10.10.2.4</text>
+  <rect class="node" filter="url(#sh)" x="835" y="169" width="160" height="86" rx="10"/>
+  <text class="h" x="915" y="196" text-anchor="middle">Workspace</text>
+  <use href="#lock" x="862" y="205" width="12" height="15"/>
+  <text class="lbl" x="880" y="217" fill="#1f7a4d">public access OFF</text>
+  <text class="s" x="915" y="236" text-anchor="middle">private only</text>
+  <line class="a" x1="425" y1="212" x2="453" y2="212" marker-end="url(#mb)"/>
+  <line class="pl" x1="615" y1="212" x2="643" y2="212" marker-end="url(#mg)"/>
+  <line class="pl" x1="805" y1="212" x2="833" y2="212" marker-end="url(#mg)"/>
+
+  <text class="t" x="1030" y="150" fill="#1f7a4d" style="font-weight:600">+ Nothing faces the internet</text>
+  <text class="t" x="1030" y="172" fill="#1f7a4d" style="font-weight:600">+ No security exception needed</text>
+  <text class="t" x="1030" y="194" fill="#1f7a4d" style="font-weight:600">+ Documented for Power Platform connectors</text>
+  <text class="t" x="1030" y="226" fill="#1f7a4d">+ Databricks and custom connectors are supported</text>
+  <text class="t" x="1030" y="248" fill="#a8321f">− Needs a Managed Environment and two regions</text>
+  <text class="t" x="1030" y="270" fill="#a8321f">− Up to 30 minutes of disruption when enabled</text>
+
+  <!-- ================= ROW B ================= -->
+  <rect x="30" y="324" width="1440" height="196" rx="14" fill="#fff9ef" stroke="#e8c27a" stroke-width="1.3"/>
+  <circle cx="74" cy="370" r="24" fill="#d98a00"/><text class="big" x="74" y="376" text-anchor="middle" fill="#fff">B</text>
+  <text class="h" x="108" y="367" style="font-size:17px">Hybrid</text>
+  <text class="s" x="108" y="386">public, but filtered</text>
+  <rect x="50" y="410" width="176" height="24" rx="12" fill="#d98a00"/>
+  <text class="lbl" x="138" y="426" text-anchor="middle" fill="#fff">FALLBACK</text>
+  <text class="s" x="50" y="460">Only if VNet support</text>
+  <text class="s" x="50" y="478">isn't possible</text>
+
+  <rect class="pub" x="440" y="353" width="570" height="136" rx="12"/>
+  <text class="zl" x="452" y="369" fill="#b86a12" style="font-size:10.5px">INTERNET-FACING</text>
+  <rect class="node" filter="url(#sh)" x="265" y="379" width="160" height="86" rx="10"/>
+  <text class="h" x="345" y="406" text-anchor="middle">Copilot Studio</text>
+  <text class="s" x="345" y="425" text-anchor="middle">“Genie Copilot” environment</text>
+  <text class="s" x="345" y="442" text-anchor="middle">Genie One connector</text>
+  <rect class="node" filter="url(#sh)" x="455" y="379" width="160" height="86" rx="10"/>
+  <text class="h" x="535" y="406" text-anchor="middle">Microsoft egress IPs</text>
+  <text class="s" x="535" y="425" text-anchor="middle">AzureConnectors and</text>
+  <text class="s" x="535" y="442" text-anchor="middle">Power Platform ranges</text>
+  <rect class="node" filter="url(#sh)" x="645" y="379" width="160" height="86" rx="10" stroke="#d9822b" stroke-width="1.5"/>
+  <text class="h" x="725" y="406" text-anchor="middle">IP access list</text>
+  <text class="s" x="725" y="425" text-anchor="middle">allow listed ranges</text>
+  <text class="s" x="725" y="442" text-anchor="middle">deny everything else</text>
+  <rect class="node" filter="url(#sh)" x="835" y="379" width="160" height="86" rx="10" stroke="#d9822b" stroke-width="1.5"/>
+  <text class="h" x="915" y="406" text-anchor="middle">Workspace</text>
+  <use href="#unlock" x="864" y="415" width="12" height="15"/>
+  <text class="lbl" x="882" y="427" fill="#b86a12">public access ON</text>
+  <text class="s" x="915" y="446" text-anchor="middle">allow list only</text>
+  <line x1="425" y1="422" x2="453" y2="422" stroke="#d9822b" stroke-width="2" marker-end="url(#mo)"/>
+  <line x1="615" y1="422" x2="643" y2="422" stroke="#d9822b" stroke-width="2" marker-end="url(#mo)"/>
+  <line x1="805" y1="422" x2="833" y2="422" stroke="#d9822b" stroke-width="2" marker-end="url(#mo)"/>
+
+  <text class="t" x="1030" y="360" fill="#1f7a4d" style="font-weight:600">+ Documented hybrid option; quickest to set up</text>
+  <text class="t" x="1030" y="382" fill="#1f7a4d" style="font-weight:600">+ No extra Azure network resources</text>
+  <text class="t" x="1030" y="404" fill="#1f7a4d" style="font-weight:600">+ Private endpoint access still works alongside it</text>
+  <text class="t" x="1030" y="436" fill="#a8321f">− The workspace front end faces the internet</text>
+  <text class="t" x="1030" y="458" fill="#a8321f">− Needs a security exception</text>
+  <text class="t" x="1030" y="480" fill="#a8321f">− Microsoft's IP ranges change; list needs upkeep</text>
+
+  <!-- ================= ROW C ================= -->
+  <rect x="30" y="534" width="1440" height="196" rx="14" fill="#f3f6fe" stroke="#94b6ea" stroke-width="1.3"/>
+  <circle cx="74" cy="580" r="24" fill="#2563c9"/><text class="big" x="74" y="586" text-anchor="middle" fill="#fff">C</text>
+  <text class="h" x="108" y="577" style="font-size:17px">MCP gateway</text>
+  <text class="s" x="108" y="596">only the gateway is public</text>
+  <rect x="50" y="620" width="176" height="24" rx="12" fill="#2563c9"/>
+  <text class="lbl" x="138" y="636" text-anchor="middle" fill="#fff">FALLBACK</text>
+  <text class="s" x="50" y="670">Only if A isn't possible</text>
+  <text class="s" x="50" y="688">and B is refused</text>
+
+  <rect class="pub" x="440" y="563" width="190" height="136" rx="12"/>
+  <text class="zl" x="452" y="579" fill="#b86a12" style="font-size:10.5px">INTERNET-FACING</text>
+  <rect class="node" filter="url(#sh)" x="265" y="589" width="160" height="86" rx="10"/>
+  <text class="h" x="345" y="616" text-anchor="middle">Copilot Studio</text>
+  <text class="s" x="345" y="635" text-anchor="middle">custom connector</text>
+  <text class="s" x="345" y="652" text-anchor="middle">OAuth 2.0</text>
+  <rect class="node" filter="url(#sh)" x="455" y="589" width="160" height="86" rx="10" stroke="#2563c9" stroke-width="1.5"/>
+  <text class="h" x="535" y="616" text-anchor="middle">MCP gateway</text>
+  <text class="s" x="535" y="635" text-anchor="middle">Azure API Management</text>
+  <text class="s" x="535" y="652" text-anchor="middle">Entra auth · rate limits</text>
+  <rect class="node" filter="url(#sh)" x="645" y="589" width="160" height="86" rx="10" stroke="#1f8a5b" stroke-width="1.5"/>
+  <text class="h" x="725" y="616" text-anchor="middle">Private endpoint</text>
+  <text class="m" x="725" y="635" text-anchor="middle">databricks_ui_api</text>
+  <text class="m" x="725" y="652" text-anchor="middle">10.10.2.4</text>
+  <rect class="node" filter="url(#sh)" x="835" y="589" width="160" height="86" rx="10"/>
+  <text class="h" x="915" y="616" text-anchor="middle">Workspace</text>
+  <use href="#lock" x="862" y="625" width="12" height="15"/>
+  <text class="lbl" x="880" y="637" fill="#1f7a4d">public access OFF</text>
+  <text class="s" x="915" y="656" text-anchor="middle">private only</text>
+  <line x1="425" y1="632" x2="453" y2="632" stroke="#d9822b" stroke-width="2" marker-end="url(#mo)"/>
+  <line class="pl" x1="615" y1="632" x2="643" y2="632" marker-end="url(#mg)"/>
+  <line class="pl" x1="805" y1="632" x2="833" y2="632" marker-end="url(#mg)"/>
+
+  <text class="t" x="1030" y="570" fill="#1f7a4d" style="font-weight:600">+ The workspace stays private</text>
+  <text class="t" x="1030" y="592" fill="#1f7a4d" style="font-weight:600">+ One controlled, auditable entry point</text>
+  <text class="t" x="1030" y="614" fill="#1f7a4d" style="font-weight:600">+ Gateway policies: rate limits, logging, WAF</text>
+  <text class="t" x="1030" y="646" fill="#a8321f">− Custom build; nothing documents this pattern</text>
+  <text class="t" x="1030" y="668" fill="#a8321f">− Extra cost (API Management with VNet)</text>
+  <text class="t" x="1030" y="690" fill="#a8321f">− Must pass each user's token through unchanged</text>
+
+  <!-- bottom -->
+  <rect x="30" y="748" width="1440" height="66" rx="12" fill="#f6f8fa" stroke="#c9d3da"/>
+  <text class="h" x="50" y="773">Decision rule</text>
+  <text class="t" x="50" y="796">Use A. Choose B (filtered public endpoint) or C (public gateway, private workspace) only if Power Platform VNet support isn't available to you.</text>
+  <text class="t" x="1230" y="773" fill="#7a4fc4" style="font-weight:600">In every option, each user's</text>
+  <text class="t" x="1230" y="796" fill="#7a4fc4" style="font-weight:600">own identity must reach Databricks.</text>
+</svg>

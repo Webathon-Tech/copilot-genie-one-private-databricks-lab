@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="820" viewBox="0 0 1500 820" role="img" aria-label="Two connector options for Genie One. Option A, two REST actions: the agent calls Ask Genie One, then polls Get Genie One result with attempt 1, 2, 3 until completed, then writes the answer; about 36 Copilot Credits per question, no preview dependency, same behaviour in Microsoft 365 Copilot and Teams. Option B, MCP server: the agent calls View ask once; Genie's answer card polls Genie One inside the chat in Microsoft 365 Copilot; in Teams the agent answers as text; about 6 Copilot Credits per question, MCP tools are in preview. Both share the same Entra app with one federated credential per connector, the delegated subnet and private endpoint, end user authentication and Unity Catalog permissions.">
+  <defs>
+    <style>
+      text{font-family:'Segoe UI',Helvetica,Arial,sans-serif}
+      .title{font-size:25px;font-weight:700;fill:#0f1f2a}
+      .subtitle{font-size:14px;fill:#5b6b76}
+      .h{font-size:15px;font-weight:600;fill:#0f1f2a}
+      .hb{font-size:19px;font-weight:700;fill:#0f1f2a}
+      .s{font-size:12.5px;fill:#5b6b76}
+      .t{font-size:13px;fill:#33424c}
+      .m{font-family:Consolas,'Cascadia Mono',Menlo,monospace;font-size:12px;fill:#3d4b55}
+      .lbl{font-size:11.5px;font-weight:700;letter-spacing:.05em}
+      .node{fill:#fff;stroke:#c9d3da;stroke-width:1.2}
+      .a{stroke:#2563c9;stroke-width:1.8;fill:none}
+      .badge{fill:#2563c9}
+      .bt{font-size:11.5px;font-weight:700;fill:#fff}
+    </style>
+    <marker id="mb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563c9"/></marker>
+    <filter id="sh" x="-5%" y="-5%" width="110%" height="120%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f1f2a" flood-opacity=".08"/></filter>
+  </defs>
+  <rect width="1500" height="820" rx="18" fill="#fbfcfd" stroke="#e1e7ec"/>
+  <text class="title" x="40" y="56">Two connector options for Genie One</text>
+  <text class="subtitle" x="40" y="82">Same Entra app, same private path, same per-user sign-in. They differ in how Copilot Studio waits for Genie's answer.</text>
+
+  <!-- Option A -->
+  <rect x="30" y="108" width="705" height="560" rx="14" fill="#f3f7fc" stroke="#bcd0ea"/>
+  <text class="hb" x="56" y="146">A · Two REST actions</text>
+  <rect x="56" y="160" width="176" height="24" rx="12" fill="#1f8a5b"/>
+  <text class="lbl" x="144" y="176" text-anchor="middle" fill="#fff">NO PREVIEW DEPENDENCY</text>
+  <text class="s" x="246" y="177">connector/genie-one-connector.swagger.yaml</text>
+
+  <rect class="node" filter="url(#sh)" x="56" y="206" width="652" height="62" rx="10"/>
+  <circle class="badge" cx="80" cy="237" r="11"/><text class="bt" x="80" y="241" text-anchor="middle">1</text>
+  <text class="h" x="100" y="232">Agent calls Ask Genie One</text>
+  <text class="s" x="100" y="252">Genie One starts the answer and returns conversation_id, response_id, status in_progress</text>
+  <line class="a" x1="382" y1="268" x2="382" y2="290" marker-end="url(#mb)"/>
+
+  <rect class="node" filter="url(#sh)" x="56" y="294" width="652" height="80" rx="10"/>
+  <circle class="badge" cx="80" cy="325" r="11"/><text class="bt" x="80" y="329" text-anchor="middle">2</text>
+  <text class="h" x="100" y="320">Agent polls Get Genie One result</text>
+  <text class="m" x="100" y="342">attempt = 1, 2, 3 … until status = completed</text>
+  <text class="s" x="100" y="362">The counter makes every poll unique, so Copilot Studio never blocks repeated calls</text>
+  <line class="a" x1="382" y1="374" x2="382" y2="396" marker-end="url(#mb)"/>
+
+  <rect class="node" filter="url(#sh)" x="56" y="400" width="652" height="62" rx="10"/>
+  <circle class="badge" cx="80" cy="431" r="11"/><text class="bt" x="80" y="435" text-anchor="middle">3</text>
+  <text class="h" x="100" y="426">Agent writes the answer</text>
+  <text class="s" x="100" y="446">Text and table from final_answer, plus the Explore in Databricks link</text>
+
+  <text class="lbl" x="56" y="500" fill="#2563c9">AT A GLANCE</text>
+  <text class="t" x="56" y="526">• About 36 Copilot Credits per cross-domain question (8–15 tool calls)</text>
+  <text class="t" x="56" y="550">• Same text answer in Microsoft 365 Copilot and Teams</text>
+  <text class="t" x="56" y="574">• You maintain the definition (actions and schemas)</text>
+  <text class="t" x="56" y="598">• Full control of the answer format through the instructions</text>
+  <text class="t" x="56" y="622">• Choose when no preview features are allowed</text>
+
+  <!-- Option B -->
+  <rect x="765" y="108" width="705" height="560" rx="14" fill="#f6f3fc" stroke="#d3c4ef"/>
+  <text class="hb" x="791" y="146">B · MCP server</text>
+  <rect x="791" y="160" width="176" height="24" rx="12" fill="#d98a00"/>
+  <text class="lbl" x="879" y="176" text-anchor="middle" fill="#fff">MCP TOOLS: PREVIEW</text>
+  <text class="s" x="981" y="177">connector/genie-one-mcp-connector.swagger.yaml</text>
+
+  <rect class="node" filter="url(#sh)" x="791" y="206" width="652" height="62" rx="10"/>
+  <circle class="badge" cx="815" cy="237" r="11"/><text class="bt" x="815" y="241" text-anchor="middle">1</text>
+  <text class="h" x="835" y="232">Agent calls View ask once</text>
+  <text class="s" x="835" y="252">Copilot Studio discovered Genie One's tools from the server; Allow all is off</text>
+  <line class="a" x1="1117" y1="268" x2="1117" y2="290" marker-end="url(#mb)"/>
+
+  <rect class="node" filter="url(#sh)" x="791" y="294" width="652" height="80" rx="10"/>
+  <circle class="badge" cx="815" cy="325" r="11"/><text class="bt" x="815" y="329" text-anchor="middle">2</text>
+  <text class="h" x="835" y="320">Genie's answer card waits for the result</text>
+  <text class="s" x="835" y="342">Microsoft 365 Copilot: the card polls Genie One through the same connector</text>
+  <text class="s" x="835" y="362">Teams (no cards): holding message, then the agent answers as text</text>
+  <line class="a" x1="1117" y1="374" x2="1117" y2="396" marker-end="url(#mb)"/>
+
+  <rect class="node" filter="url(#sh)" x="791" y="400" width="652" height="62" rx="10"/>
+  <circle class="badge" cx="815" cy="431" r="11"/><text class="bt" x="815" y="435" text-anchor="middle">3</text>
+  <text class="h" x="835" y="426">Agent adds one sentence and the link</text>
+  <text class="s" x="835" y="446">The card's final answer is in the agent's context, so simple follow-ups need no new call</text>
+
+  <text class="lbl" x="791" y="500" fill="#7c4dcc">AT A GLANCE</text>
+  <text class="t" x="791" y="526">• About 6 Copilot Credits per cross-domain question (1 agent tool call)</text>
+  <text class="t" x="791" y="550">• Genie's own card in Microsoft 365 Copilot; text in Teams</text>
+  <text class="t" x="791" y="574">• No definition to maintain; new Genie One tools stay off until reviewed</text>
+  <text class="t" x="791" y="598">• Connector must be created inside a solution</text>
+  <text class="t" x="791" y="622">• Choose for lower cost, if the MCP preview is accepted</text>
+
+  <!-- Shared -->
+  <rect x="30" y="690" width="1440" height="100" rx="14" fill="#eef7f2" stroke="#b9dcc8"/>
+  <text class="lbl" x="56" y="720" fill="#1f8a5b">SHARED BY BOTH OPTIONS</text>
+  <text class="t" x="56" y="746">• One Entra app (copilot-genie-one-mcp) with one redirect URI and one federated credential per connector, no secret</text>
+  <text class="t" x="56" y="770">• End user account authentication · delegated subnet → private endpoint · Genie One routes to the user's spaces · Unity Catalog decides the rows</text>
+</svg>

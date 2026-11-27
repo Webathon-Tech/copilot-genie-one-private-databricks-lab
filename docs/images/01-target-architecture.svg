@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-label="As-built architecture. Business users ask in Microsoft 365 Copilot or Teams. The Copilot Studio agent Ask Genie calls Genie One through a custom connector (option A: two REST actions; option B: MCP server) with end-user authentication. The connector signs in through Microsoft Entra ID using a managed identity and federated credential, runs inside a delegated subnet in the customer's virtual network through Power Platform VNet support, and reaches the Databricks workspace only through its private endpoint. Public network access is disabled. Genie One routes the question to the Genie spaces the user can access, or queries any table the user can read directly, and runs SQL as the user, filtered by Unity Catalog.">
+  <defs>
+    <style>
+      text{font-family:'Segoe UI',Helvetica,Arial,sans-serif}
+      .title{font-size:25px;font-weight:700;fill:#0f1f2a}
+      .subtitle{font-size:14px;fill:#5b6b76}
+      .zl{font-size:12px;font-weight:700;letter-spacing:.08em}
+      .h{font-size:14px;font-weight:600;fill:#0f1f2a}
+      .s{font-size:12px;fill:#5b6b76}
+      .t{font-size:12.5px;fill:#33424c}
+      .m{font-family:Consolas,'Cascadia Mono',Menlo,monospace;font-size:11.5px;fill:#3d4b55}
+      .node{fill:#fff;stroke:#c9d3da;stroke-width:1.2}
+      .zone{stroke-width:1.4;stroke-dasharray:7 5}
+      .z-u{fill:#f6f4fd;stroke:#b3a6e6}
+      .z-ms{fill:#f1f6fe;stroke:#94b6ea}
+      .z-az{fill:#eff8f3;stroke:#86c4a2}
+      .z-dbx{fill:#fef5f2;stroke:#eea48f}
+      .a{stroke:#2563c9;stroke-width:2;fill:none}
+      .pl{stroke:#1f8a5b;stroke-width:2.6;fill:none}
+      .id{stroke:#7c4dcc;stroke-width:1.8;stroke-dasharray:6 4;fill:none}
+      .badge{fill:#d98a00}
+      .bt{font-size:11.5px;font-weight:700;fill:#fff}
+    </style>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="140%"><feDropShadow dx="0" dy="1.5" stdDeviation="2.2" flood-color="#0f1f2a" flood-opacity=".10"/></filter>
+    <marker id="mb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563c9"/></marker>
+    <marker id="mg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f8a5b"/></marker>
+    <marker id="mp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c4dcc"/></marker>
+    <symbol id="ok" viewBox="-9 -9 18 18"><circle r="8.5" fill="#1f8a5b"/><path d="M-4 0.2 L-1.2 3 L4 -2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="lock" viewBox="-8 -9 16 18"><rect x="-6" y="-1" width="12" height="9" rx="2" fill="#c0392b"/><path d="M-3.5 -1 V-4 A3.5 3.5 0 0 1 3.5 -4 V-1" stroke="#c0392b" stroke-width="1.8" fill="none"/></symbol>
+  </defs>
+
+  <rect x="0.5" y="0.5" width="1599" height="999" rx="18" fill="#fff" stroke="#dfe5ea"/>
+  <text class="title" x="40" y="50">As-built architecture · Microsoft 365 Copilot → Databricks Genie One</text>
+  <text class="subtitle" x="40" y="76">One entry point, each user's own permissions, a workspace with public access disabled, and no client secrets. Example values shown.</text>
+  <use href="#ok" x="1418" y="62" width="17" height="17"/><text class="s" x="1441" y="75">built and verified</text>
+
+  <!-- zones -->
+  <rect class="zone z-u" x="30" y="105" width="215" height="655" rx="14"/>
+  <text class="zl" x="46" y="131" fill="#5a3fb0">PEOPLE</text>
+  <rect class="zone z-ms" x="260" y="105" width="505" height="655" rx="14"/>
+  <text class="zl" x="278" y="131" fill="#1d5fbf">MICROSOFT CLOUD</text>
+  <rect class="zone z-az" x="780" y="105" width="400" height="460" rx="14"/>
+  <text class="zl" x="798" y="131" fill="#1f7a4d">YOUR AZURE · CANADA CENTRAL</text>
+  <text class="m" x="798" y="149">vnet-genie-demo · 10.10.0.0/20</text>
+  <rect class="zone z-az" x="780" y="580" width="400" height="180" rx="14"/>
+  <text class="zl" x="798" y="606" fill="#1f7a4d">YOUR AZURE · CANADA EAST (PAIRED)</text>
+  <text class="m" x="798" y="624">vnet-genie-demo-cne · 10.11.0.0/24</text>
+  <rect class="zone z-dbx" x="1195" y="105" width="375" height="655" rx="14"/>
+  <text class="zl" x="1213" y="131" fill="#c8442b">AZURE DATABRICKS · dbw-genie-demo</text>
+
+  <!-- people -->
+  <rect class="node" filter="url(#sh)" x="45" y="160" width="185" height="112" rx="10"/>
+  <text class="h" x="137" y="188" text-anchor="middle">Business users</text>
+  <text class="s" x="137" y="210" text-anchor="middle">drill.user · comp.user</text>
+  <text class="s" x="137" y="228" text-anchor="middle">mgr.user</text>
+  <text class="m" x="137" y="252" text-anchor="middle">grp-genie-copilot-users</text>
+  <rect class="node" filter="url(#sh)" x="45" y="330" width="185" height="96" rx="10"/>
+  <text class="h" x="137" y="360" text-anchor="middle">Microsoft 365 Copilot</text>
+  <text class="h" x="137" y="380" text-anchor="middle">and Teams</text>
+  <text class="s" x="137" y="404" text-anchor="middle">agent “Ask Genie”</text>
+  <line class="a" x1="137" y1="272" x2="137" y2="328" marker-end="url(#mb)"/>
+  <circle class="badge" cx="155" cy="300" r="10"/><text class="bt" x="155" y="304" text-anchor="middle">1</text>
+  <text class="s" x="45" y="470">Each user signs in once to</text>
+  <text class="s" x="45" y="488">create their own connection.</text>
+  <text class="s" x="45" y="506">Every answer runs with</text>
+  <text class="s" x="45" y="524">that user's permissions.</text>
+
+  <!-- microsoft cloud -->
+  <rect class="node" filter="url(#sh)" x="280" y="160" width="465" height="118" rx="10"/>
+  <text class="h" x="300" y="186">Copilot Studio agent · Ask Genie</text>
+  <use href="#ok" x="716" y="173" width="16" height="16"/>
+  <text class="t" x="300" y="208">Fixed model (Claude Sonnet) · instructions: one reply per question</text>
+  <text class="m" x="300" y="230">A: Ask Genie One · Get Genie One result  |  B: Genie One MCP tools</text>
+  <text class="t" x="300" y="254">Tool authentication: End user account</text>
+  <path class="a" d="M230,378 H252 V219 H278" marker-end="url(#mb)"/>
+  <circle class="badge" cx="252" cy="300" r="10"/><text class="bt" x="252" y="304" text-anchor="middle">2</text>
+
+  <rect class="node" filter="url(#sh)" x="280" y="310" width="465" height="112" rx="10"/>
+  <text class="h" x="300" y="336">Custom connector (in a solution) · Genie One</text>
+  <use href="#ok" x="716" y="323" width="16" height="16"/>
+  <text class="t" x="300" y="358">OAuth 2.0 · Microsoft Entra ID · resource AzureDatabricks</text>
+  <text class="t" x="300" y="378">Managed identity + federated credential · no client secret</text>
+  <text class="m" x="300" y="402">POST /ai-gateway/mcp-services/system.ai.genie_one_mcp</text>
+  <line class="a" x1="512" y1="278" x2="512" y2="308" marker-end="url(#mb)"/>
+
+  <rect class="node" filter="url(#sh)" x="280" y="450" width="465" height="120" rx="10"/>
+  <text class="h" x="300" y="476">Power Platform environment · Genie Copilot</text>
+  <use href="#ok" x="716" y="463" width="16" height="16"/>
+  <text class="t" x="300" y="498">Production · Managed · security group · pay-as-you-go billing</text>
+  <text class="t" x="300" y="518">Data policy: Teams channel + Genie One = Business; HTTP blocked</text>
+  <text class="m" x="300" y="544">enterprise policy ep-genie-copilot-vnet</text>
+  <text class="s" x="300" y="561">connectors run inside your delegated subnets</text>
+
+  <rect class="node" filter="url(#sh)" x="280" y="598" width="465" height="146" rx="10"/>
+  <text class="h" x="300" y="624">Microsoft Entra ID</text>
+  <use href="#ok" x="716" y="611" width="16" height="16"/>
+  <text class="m" x="300" y="646">app copilot-genie-one-mcp · single tenant</text>
+  <text class="t" x="300" y="668">Delegated permission: AzureDatabricks user_impersonation</text>
+  <text class="t" x="300" y="690">Federated credential = the connector's managed identity</text>
+  <text class="t" x="300" y="712">Assignment required → grp-genie-copilot-users only</text>
+  <text class="s" x="300" y="733">Client secrets: 0</text>
+  <path class="id" d="M745,640 H757 V366 H747" marker-end="url(#mp)"/>
+  <text class="s" x="560" y="590" fill="#7c4dcc">user token for Databricks</text>
+
+  <!-- azure central -->
+  <rect class="node" filter="url(#sh)" x="800" y="165" width="360" height="104" rx="10"/>
+  <text class="h" x="818" y="191">Delegated subnet · snet-pp-cnc</text>
+  <use href="#ok" x="1131" y="178" width="16" height="16"/>
+  <text class="m" x="818" y="213">10.10.3.0/26</text>
+  <text class="m" x="818" y="233">Microsoft.PowerPlatform/enterprisePolicies</text>
+  <text class="s" x="818" y="255">connector containers, for example 10.10.3.6</text>
+  <path class="a" d="M745,366 H770 V217 H798" marker-end="url(#mb)"/>
+  <circle class="badge" cx="770" cy="292" r="10"/><text class="bt" x="770" y="296" text-anchor="middle">3</text>
+
+  <rect class="node" filter="url(#sh)" x="800" y="300" width="360" height="104" rx="10"/>
+  <text class="h" x="818" y="326">Private endpoints · snet-pe</text>
+  <use href="#ok" x="1131" y="313" width="16" height="16"/>
+  <text class="m" x="818" y="350">databricks_ui_api       10.10.2.4</text>
+  <text class="m" x="818" y="372">browser_authentication  10.10.2.5</text>
+  <text class="s" x="818" y="394">10.10.2.0/26</text>
+  <line class="pl" x1="980" y1="269" x2="980" y2="298" marker-end="url(#mg)"/>
+  <circle class="badge" cx="998" cy="284" r="10"/><text class="bt" x="998" y="288" text-anchor="middle">4</text>
+
+  <rect class="node" filter="url(#sh)" x="800" y="435" width="360" height="110" rx="10"/>
+  <text class="h" x="818" y="461">Private DNS zone</text>
+  <use href="#ok" x="1131" y="448" width="16" height="16"/>
+  <text class="m" x="818" y="483">privatelink.azuredatabricks.net</text>
+  <text class="s" x="818" y="505">linked to both VNets, so the workspace name</text>
+  <text class="s" x="818" y="523">resolves to 10.10.2.4 inside your network</text>
+
+  <!-- azure east -->
+  <rect class="node" filter="url(#sh)" x="800" y="640" width="360" height="104" rx="10"/>
+  <text class="h" x="818" y="666">Delegated subnet · snet-pp-cne</text>
+  <use href="#ok" x="1131" y="653" width="16" height="16"/>
+  <text class="m" x="818" y="688">10.11.0.0/26 · same size, same delegation</text>
+  <text class="s" x="818" y="710">used if Power Platform fails over to</text>
+  <text class="s" x="818" y="728">Canada East; reaches the endpoint by peering</text>
+  <path class="pl" d="M1170,692 H1180 V352" style="stroke-dasharray:6 4" />
+  <text class="s" x="1104" y="580" fill="#1f7a4d">peering</text>
+
+  <!-- databricks -->
+  <use href="#lock" x="1213" y="146" width="15" height="17"/>
+  <text class="t" x="1234" y="160" fill="#a8321f">Public network access: Disabled (internet → 403)</text>
+  <rect class="node" filter="url(#sh)" x="1215" y="178" width="335" height="88" rx="10"/>
+  <text class="h" x="1233" y="204">Workspace front end</text>
+  <text class="m" x="1233" y="226">adb-1234567890123456.7.azuredatabricks.net</text>
+  <text class="s" x="1233" y="248">reachable only through the private endpoint</text>
+  <path class="pl" d="M1160,352 H1188 V222 H1213" marker-end="url(#mg)"/>
+  <circle class="badge" cx="1188" cy="290" r="10"/><text class="bt" x="1188" y="294" text-anchor="middle">5</text>
+
+  <rect class="node" filter="url(#sh)" x="1215" y="296" width="335" height="98" rx="10"/>
+  <text class="h" x="1233" y="322">Genie One</text>
+  <use href="#ok" x="1521" y="309" width="16" height="16"/>
+  <text class="m" x="1233" y="344">system.ai.genie_one_mcp</text>
+  <text class="s" x="1233" y="366">genie_ask · genie_poll_response</text>
+  <text class="s" x="1233" y="384">uses this user's spaces or readable tables</text>
+  <line class="a" x1="1382" y1="266" x2="1382" y2="294" marker-end="url(#mb)"/>
+
+  <rect class="node" filter="url(#sh)" x="1215" y="424" width="335" height="90" rx="10"/>
+  <text class="h" x="1233" y="450">Genie spaces (shared per group)</text>
+  <text class="s" x="1233" y="472">Drilling Performance · Completions</text>
+  <text class="s" x="1233" y="490">Production</text>
+  <line class="a" x1="1382" y1="394" x2="1382" y2="422" marker-end="url(#mb)"/>
+  <circle class="badge" cx="1400" cy="408" r="10"/><text class="bt" x="1400" y="412" text-anchor="middle">6</text>
+
+  <rect class="node" filter="url(#sh)" x="1215" y="544" width="335" height="96" rx="10"/>
+  <text class="h" x="1233" y="570">Unity Catalog</text>
+  <text class="m" x="1233" y="592">catalog dbw_genie_demo</text>
+  <text class="s" x="1233" y="610">schemas: drilling · completions · production</text>
+  <text class="s" x="1233" y="630">grants per group decide the rows returned</text>
+  <line class="a" x1="1382" y1="514" x2="1382" y2="542" marker-end="url(#mb)"/>
+
+  <rect class="node" filter="url(#sh)" x="1215" y="670" width="335" height="74" rx="10"/>
+  <text class="h" x="1233" y="696">Serverless SQL warehouse</text>
+  <text class="s" x="1233" y="718">Genie's SQL runs as the signed-in user</text>
+  <line class="a" x1="1382" y1="640" x2="1382" y2="668" marker-end="url(#mb)"/>
+
+  <!-- footer -->
+  <rect x="30" y="780" width="1540" height="196" rx="14" fill="#f7f9fb" stroke="#e3e8ec"/>
+  <text class="zl" x="50" y="808" fill="#33424c">ONE QUESTION, END TO END</text>
+  <g class="t">
+    <circle class="badge" cx="59" cy="833" r="9"/><text class="bt" x="59" y="837" text-anchor="middle">1</text><text x="76" y="838">The user asks a question in Microsoft 365 Copilot or Teams.</text>
+    <circle class="badge" cx="59" cy="861" r="9"/><text class="bt" x="59" y="865" text-anchor="middle">2</text><text x="76" y="866">The agent calls Genie One through the user's own connection (End user account).</text>
+    <circle class="badge" cx="59" cy="889" r="9"/><text class="bt" x="59" y="893" text-anchor="middle">3</text><text x="76" y="894">The connector gets an Entra token for Azure Databricks as the user and runs in the delegated subnet.</text>
+    <circle class="badge" cx="59" cy="917" r="9"/><text class="bt" x="59" y="921" text-anchor="middle">4</text><text x="76" y="922">Private DNS resolves the workspace to the private endpoint; nothing crosses the public internet.</text>
+    <circle class="badge" cx="59" cy="945" r="9"/><text class="bt" x="59" y="949" text-anchor="middle">5</text><text x="76" y="950">Private Link is the only way in: the workspace's public network access is disabled.</text>
+    <circle class="badge" cx="800" cy="833" r="9"/><text class="bt" x="800" y="837" text-anchor="middle">6</text><text x="817" y="838">Genie One uses this user's spaces or any table they can read; Unity Catalog filters the SQL.</text>
+    <text x="817" y="866">Option A: the agent polls Get Genie One result (attempt 1, 2, 3 …). Option B: Genie's</text>
+    <text x="817" y="886">answer card waits for the result. Either way: one reply, with an Explore in Databricks link.</text>
+  </g>
+  <line class="a" x1="817" y1="922" x2="867" y2="922" marker-end="url(#mb)"/><text class="s" x="876" y="926">request path</text>
+  <line class="pl" x1="975" y1="922" x2="1025" y2="922" marker-end="url(#mg)"/><text class="s" x="1034" y="926">private network path</text>
+  <line class="id" x1="1170" y1="922" x2="1220" y2="922" marker-end="url(#mp)"/><text class="s" x="1229" y="926">user identity (Entra token)</text>
+  <circle class="badge" cx="1410" cy="918" r="9"/><text class="bt" x="1410" y="922" text-anchor="middle">n</text><text class="s" x="1426" y="926">step</text>
+  <text class="s" x="817" y="956">Governance: data policy, assignment required, delete locks, budget alerts and audit logs. See 05-production-hardening.md.</text>
+</svg>

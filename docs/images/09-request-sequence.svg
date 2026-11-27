@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-label="Request sequence. The user asks the Copilot Studio agent. The agent calls Ask Genie One through the user's own connection. The custom connector obtains an Entra ID token for Azure Databricks as the user, proving its identity with a managed identity federated credential, and calls Genie One through the private endpoint. Genie One returns conversation and response IDs with status in progress, then runs SQL as the user through Unity Catalog. The agent calls Get Genie One result with attempt 1, 2, 3 and so on until the status is completed, and replies to the user once.">
+  <defs>
+    <style>
+      text{font-family:'Segoe UI',Helvetica,Arial,sans-serif}
+      .title{font-size:25px;font-weight:700;fill:#0f1f2a}
+      .subtitle{font-size:14px;fill:#5b6b76}
+      .h{font-size:14px;font-weight:600;fill:#0f1f2a}
+      .s{font-size:12px;fill:#5b6b76}
+      .t{font-size:12.5px;fill:#33424c}
+      .m{font-family:Consolas,'Cascadia Mono',Menlo,monospace;font-size:11.5px;fill:#3d4b55}
+      .hd{stroke-width:1.2}
+      .life{stroke:#b8c4cc;stroke-width:1.4;stroke-dasharray:5 5}
+      .a{stroke:#2563c9;stroke-width:1.8;fill:none}
+      .r{stroke:#7b8a96;stroke-width:1.6;stroke-dasharray:6 4;fill:none}
+      .pl{stroke:#1f8a5b;stroke-width:2.4;fill:none}
+      .id{stroke:#7c4dcc;stroke-width:1.8;fill:none}
+      .badge{fill:#d98a00}
+      .bt{font-size:11.5px;font-weight:700;fill:#fff}
+    </style>
+    <marker id="mb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563c9"/></marker>
+    <marker id="mk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7b8a96"/></marker>
+    <marker id="mg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f8a5b"/></marker>
+    <marker id="mp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c4dcc"/></marker>
+  </defs>
+
+  <rect x="0.5" y="0.5" width="1499" height="899" rx="18" fill="#fff" stroke="#dfe5ea"/>
+  <text class="title" x="40" y="50">How one question is answered · Genie One in one reply</text>
+  <text class="subtitle" x="40" y="76">Genie answers asynchronously. The agent asks once, then polls with a counter that makes every call unique, until the answer is complete.</text>
+
+  <!-- headers -->
+  <g>
+    <rect class="hd" x="50" y="100" width="170" height="58" rx="10" fill="#f6f4fd" stroke="#b3a6e6"/>
+    <text class="h" x="135" y="125" text-anchor="middle">User</text><text class="s" x="135" y="144" text-anchor="middle">Microsoft 365 Copilot · Teams</text>
+    <rect class="hd" x="280" y="100" width="190" height="58" rx="10" fill="#f1f6fe" stroke="#94b6ea"/>
+    <text class="h" x="375" y="125" text-anchor="middle">Agent · Ask Genie</text><text class="s" x="375" y="144" text-anchor="middle">Copilot Studio</text>
+    <rect class="hd" x="530" y="100" width="210" height="58" rx="10" fill="#f1f6fe" stroke="#94b6ea"/>
+    <text class="h" x="635" y="125" text-anchor="middle">Genie One connector</text><text class="s" x="635" y="144" text-anchor="middle">runs in your delegated subnet</text>
+    <rect class="hd" x="800" y="100" width="170" height="58" rx="10" fill="#f6f4fd" stroke="#b3a6e6"/>
+    <text class="h" x="885" y="125" text-anchor="middle">Microsoft Entra ID</text><text class="s" x="885" y="144" text-anchor="middle">login.microsoftonline.com</text>
+    <rect class="hd" x="1030" y="100" width="190" height="58" rx="10" fill="#fef5f2" stroke="#eea48f"/>
+    <text class="h" x="1125" y="125" text-anchor="middle">Genie One</text><text class="s" x="1125" y="144" text-anchor="middle">via private endpoint</text>
+    <rect class="hd" x="1280" y="100" width="180" height="58" rx="10" fill="#fef5f2" stroke="#eea48f"/>
+    <text class="h" x="1370" y="125" text-anchor="middle">Unity Catalog</text><text class="s" x="1370" y="144" text-anchor="middle">SQL warehouse</text>
+  </g>
+  <line class="life" x1="135" y1="158" x2="135" y2="770"/>
+  <line class="life" x1="375" y1="158" x2="375" y2="770"/>
+  <line class="life" x1="635" y1="158" x2="635" y2="770"/>
+  <line class="life" x1="885" y1="158" x2="885" y2="770"/>
+  <line class="life" x1="1125" y1="158" x2="1125" y2="770"/>
+  <line class="life" x1="1370" y1="158" x2="1370" y2="770"/>
+
+  <!-- 1 -->
+  <line class="a" x1="135" y1="195" x2="371" y2="195" marker-end="url(#mb)"/>
+  <circle class="badge" cx="152" cy="181" r="9"/><text class="bt" x="152" y="185" text-anchor="middle">1</text>
+  <text class="t" x="168" y="187">“Top 10 wells by proppant per stage…”</text>
+  <!-- 2 -->
+  <line class="a" x1="375" y1="235" x2="631" y2="235" marker-end="url(#mb)"/>
+  <circle class="badge" cx="392" cy="221" r="9"/><text class="bt" x="392" y="225" text-anchor="middle">2</text>
+  <text class="m" x="408" y="227">Ask Genie One(question)</text>
+  <text class="s" x="408" y="252">the user's own connection</text>
+  <!-- 3 -->
+  <line class="id" x1="635" y1="280" x2="881" y2="280" marker-end="url(#mp)"/>
+  <circle class="badge" cx="652" cy="266" r="9"/><text class="bt" x="652" y="270" text-anchor="middle">3</text>
+  <text class="t" x="668" y="272" fill="#5a3fb0">token for AzureDatabricks, as the user</text>
+  <text class="s" x="668" y="297">connector proves itself with its managed identity (no secret)</text>
+  <line class="r" x1="885" y1="318" x2="639" y2="318" marker-end="url(#mk)"/>
+  <text class="s" x="760" y="334" text-anchor="middle">access token (user)</text>
+  <!-- 4 -->
+  <line class="pl" x1="635" y1="360" x2="1121" y2="360" marker-end="url(#mg)"/>
+  <circle class="badge" cx="652" cy="346" r="9"/><text class="bt" x="652" y="350" text-anchor="middle">4</text>
+  <text class="m" x="668" y="352">POST …/system.ai.genie_one_mcp · tools/call genie_ask</text>
+  <text class="s" x="668" y="377">from 10.10.3.x to the private endpoint 10.10.2.4</text>
+  <!-- 5 -->
+  <line class="r" x1="1125" y1="405" x2="379" y2="405" marker-end="url(#mk)"/>
+  <circle class="badge" cx="1105" cy="391" r="9"/><text class="bt" x="1105" y="395" text-anchor="middle">5</text>
+  <text class="m" x="720" y="398">conversation_id · response_id · status: in_progress</text>
+  <!-- 6 -->
+  <line class="a" x1="1125" y1="445" x2="1366" y2="445" marker-end="url(#mb)"/>
+  <circle class="badge" cx="1142" cy="431" r="9"/><text class="bt" x="1142" y="435" text-anchor="middle">6</text>
+  <text class="t" x="1158" y="437">routes to the user's spaces</text>
+  <text class="s" x="1158" y="462">SQL runs as the user</text>
+  <line class="r" x1="1370" y1="482" x2="1129" y2="482" marker-end="url(#mk)"/>
+  <text class="s" x="1250" y="500" text-anchor="middle">only rows the user may see</text>
+
+  <!-- loop -->
+  <rect x="300" y="520" width="850" height="150" rx="12" fill="#fffaf0" stroke="#e6b450" stroke-dasharray="6 4"/>
+  <text class="h" x="318" y="544" fill="#9a6200">loop · while status is in_progress</text>
+  <circle class="badge" cx="327" cy="571" r="9"/><text class="bt" x="327" y="575" text-anchor="middle">7</text>
+  <line class="a" x1="375" y1="585" x2="631" y2="585" marker-end="url(#mb)"/>
+  <text class="m" x="345" y="577">Get Genie One result(attempt = n)</text>
+  <line class="pl" x1="635" y1="610" x2="1121" y2="610" marker-end="url(#mg)"/>
+  <text class="m" x="668" y="602">POST …/genie_one_mcp/?attempt=n · genie_poll_response</text>
+  <line class="r" x1="1125" y1="645" x2="379" y2="645" marker-end="url(#mk)"/>
+  <text class="m" x="720" y="638">status: in_progress (n = 1, 2, 3 …)</text>
+
+  <!-- 8 -->
+  <line class="r" x1="1125" y1="705" x2="379" y2="705" marker-end="url(#mk)" style="stroke:#1f8a5b"/>
+  <circle class="badge" cx="1105" cy="691" r="9"/><text class="bt" x="1105" y="695" text-anchor="middle">8</text>
+  <text class="m" x="640" y="698">status: completed · final_answer · deep_link</text>
+  <!-- 9 -->
+  <line class="a" x1="375" y1="745" x2="139" y2="745" marker-end="url(#mb)"/>
+  <circle class="badge" cx="358" cy="731" r="9"/><text class="bt" x="358" y="735" text-anchor="middle">9</text>
+  <text class="t" x="152" y="737">one reply: table + link</text>
+
+  <!-- notes -->
+  <rect x="40" y="790" width="1420" height="92" rx="12" fill="#f7f9fb" stroke="#e3e8ec"/>
+  <text class="h" x="60" y="815">Why the attempt counter</text>
+  <text class="t" x="60" y="837">Copilot Studio blocks a tool after repeated identical calls in one reply. genie_poll_response takes only the two IDs, so plain polling is identical.</text>
+  <text class="t" x="60" y="857">Adding ?attempt=n (ignored by Databricks) makes each poll unique, so the agent can keep polling and answer in one reply. Typical answers: 15–90 seconds.</text>
+  <text class="t" x="60" y="877">Never call Ask Genie One again while a question is in progress: a second ask on a busy conversation fails (“stream closed before response”).</text>
+</svg>

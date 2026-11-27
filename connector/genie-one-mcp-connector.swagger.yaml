@@ -1,0 +1,47 @@
+# Option B: Genie One as an MCP server (MCP mode).
+# Copilot Studio discovers the Genie One tools (genie_ask, genie_poll_response, view_ask and others) from the
+# server, so this definition never changes when Databricks adds or updates tools.
+# Create this connector INSIDE a Power Platform solution, otherwise Copilot Studio can't save it as an MCP tool.
+# Replace the host with your workspace host.
+swagger: '2.0'
+info:
+  title: Genie One MCP
+  description: >-
+    Databricks Genie One MCP server in MCP mode. Copilot Studio discovers the
+    Genie One tools. Runs as the signed-in user.
+  version: '1.0'
+host: adb-1234567890123456.7.azuredatabricks.net
+basePath: /ai-gateway/mcp-services
+schemes:
+  - https
+consumes: []
+produces: []
+paths:
+  /system.ai.genie_one_mcp:
+    post:
+      summary: Databricks Genie One
+      description: >-
+        Ask questions about the organisation's data in Databricks. Genie One
+        chooses the Genie space or spaces that can answer, under the signed-in
+        user's own permissions.
+      # Marks this operation as an MCP server (streamable HTTP transport).
+      x-ms-agentic-protocol: mcp-streamable-1.0
+      operationId: InvokeGenieOneMCP
+      responses:
+        '200':
+          description: Success
+definitions: {}
+parameters: {}
+responses: {}
+security:
+  - oauth2-auth: []
+tags: []
+# Power Platform replaces this block with the settings you choose on the Security tab
+# (OAuth 2.0, Azure Active Directory, managed identity, your tenant ID and resource URL).
+securityDefinitions:
+  oauth2-auth:
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+    tokenUrl: https://login.windows.net/common/oauth2/authorize
+    scopes: {}

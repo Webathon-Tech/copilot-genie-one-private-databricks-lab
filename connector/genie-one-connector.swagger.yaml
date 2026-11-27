@@ -1,0 +1,239 @@
+# Option A: Genie One as two REST actions (Ask Genie One, Get Genie One result).
+# The agent asks once and polls with an increasing "attempt" counter until the answer is complete.
+# Create this connector inside a Power Platform solution (recommended). Replace the host with your workspace host.
+swagger: '2.0'
+info:
+  title: Genie One
+  description: >-
+    Databricks Genie One managed MCP server, called as two REST actions (ask, then get result)
+    as the signed-in user. Replace the host with your workspace URL.
+  version: '2.0'
+host: adb-1234567890123456.7.azuredatabricks.net
+basePath: /ai-gateway/mcp-services
+schemes:
+  - https
+consumes: []
+produces: []
+paths:
+  /system.ai.genie_one_mcp:
+    post:
+      summary: Ask Genie One
+      description: >-
+        Sends a natural-language data question to Databricks Genie One as the signed-in user.
+        Genie One chooses the Genie space or spaces that can answer it. Returns conversation_id,
+        response_id and status. The answer is usually still in progress, so call Get Genie One
+        result next with the same IDs.
+      operationId: AskGenieOne
+      x-ms-visibility: important
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            required:
+              - jsonrpc
+              - id
+              - method
+              - params
+            properties:
+              jsonrpc:
+                type: string
+                default: '2.0'
+                x-ms-visibility: internal
+              id:
+                type: integer
+                default: 1
+                x-ms-visibility: internal
+              method:
+                type: string
+                default: tools/call
+                x-ms-visibility: internal
+              params:
+                type: object
+                required:
+                  - name
+                  - arguments
+                properties:
+                  name:
+                    type: string
+                    default: genie_ask
+                    x-ms-visibility: internal
+                  arguments:
+                    type: object
+                    required:
+                      - question
+                    properties:
+                      question:
+                        type: string
+                        title: Question
+                        description: The user's data question in natural language.
+                      conversation_id:
+                        type: string
+                        title: Conversation ID
+                        description: >-
+                          Optional. The conversation_id from an earlier Genie One answer,
+                          to ask a follow-up in the same Genie conversation.
+      responses:
+        '200':
+          description: Genie One accepted the question.
+          schema:
+            $ref: '#/definitions/GenieOneResponse'
+  # The trailing slash gives the polling action its own path. Databricks treats both paths the same.
+  /system.ai.genie_one_mcp/:
+    post:
+      summary: Get Genie One result
+      description: >-
+        Checks a Genie One answer started with Ask Genie One. Pass the same conversation_id and
+        response_id, and increase attempt by 1 on every call (1, 2, 3, ...). Keep calling while
+        status is in_progress. When status is completed, the answer is in final_answer, the link
+        in deep_link, and any SQL queries Genie ran directly are listed in query_items.
+      operationId: GetGenieOneResult
+      x-ms-visibility: important
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        # Ignored by Databricks. It makes every polling call unique, so Copilot Studio never
+        # treats repeated polls as identical calls.
+        - name: attempt
+          in: query
+          required: true
+          type: integer
+          x-ms-summary: Attempt
+          description: Check counter. Use 1 for the first check and add 1 on every following check.
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            required:
+              - jsonrpc
+              - id
+              - method
+              - params
+            properties:
+              jsonrpc:
+                type: string
+                default: '2.0'
+                x-ms-visibility: internal
+              id:
+                type: integer
+                default: 2
+                x-ms-visibility: internal
+              method:
+                type: string
+                default: tools/call
+                x-ms-visibility: internal
+              params:
+                type: object
+                required:
+                  - name
+                  - arguments
+                properties:
+                  name:
+                    type: string
+                    default: genie_poll_response
+                    x-ms-visibility: internal
+                  arguments:
+                    type: object
+                    required:
+                      - conversation_id
+                      - response_id
+                    properties:
+                      conversation_id:
+                        type: string
+                        title: Conversation ID
+                        description: The conversation_id returned by Ask Genie One.
+                      response_id:
+                        type: string
+                        title: Response ID
+                        description: The response_id returned by Ask Genie One.
+      responses:
+        '200':
+          description: Current state of the Genie One answer.
+          schema:
+            $ref: '#/definitions/GenieOneResponse'
+definitions:
+  GenieOneResponse:
+    type: object
+    properties:
+      result:
+        type: object
+        properties:
+          isError:
+            type: boolean
+          structuredContent:
+            type: object
+            properties:
+              status:
+                type: string
+                description: in_progress, completed, incomplete or failed.
+              conversation_id:
+                type: string
+              response_id:
+                type: string
+              final_answer:
+                type: string
+                description: Genie's final answer in markdown, present when status is completed.
+              deep_link:
+                type: string
+                description: Explore in Databricks link for this answer.
+              progress_steps:
+                type: array
+                description: Short summaries of Genie's steps so far, while status is in_progress.
+                items:
+                  type: string
+              narration_instruction:
+                type: string
+                description: Progress hint for streaming clients. Not needed for the reply.
+              query_items:
+                type: array
+                description: >-
+                  SQL queries Genie One ran directly for this answer. Empty when a Genie space
+                  answered.
+                items:
+                  type: object
+                  properties:
+                    item_id:
+                      type: string
+                      description: ID of a query Genie ran directly.
+                    sql:
+                      type: string
+                      description: The SQL Genie ran.
+          content:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                text:
+                  type: string
+                  description: Genie's answer in markdown.
+      error:
+        type: object
+        properties:
+          code:
+            type: integer
+          message:
+            type: string
+parameters: {}
+responses: {}
+# Power Platform replaces this block with the settings you choose on the Security tab
+# (OAuth 2.0, Azure Active Directory, managed identity, your tenant ID and resource URL).
+securityDefinitions:
+  oauth2-auth:
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+    tokenUrl: https://login.windows.net/common/oauth2/authorize
+    scopes: {}
+security:
+  - oauth2-auth: []
+tags: []

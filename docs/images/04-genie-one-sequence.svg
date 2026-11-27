@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1020" viewBox="0 0 1500 1020" role="img" aria-label="Sequence of a Genie One question: the manager asks; the Copilot agent calls genie_ask through the Genie One connector with the user's Entra token; Genie One returns conversation and response IDs immediately, routes the question to the Completions and Production agents, which run SQL on the serverless warehouse as the user; Unity Catalog returns only permitted rows; the Copilot agent polls genie_poll_response until the answer is complete, optionally fetches full rows, and shows the answer.">
+  <defs>
+    <style>
+      text{font-family:'Segoe UI',Helvetica,Arial,sans-serif}
+      .title{font-size:25px;font-weight:700;fill:#0f1f2a}
+      .subtitle{font-size:14px;fill:#5b6b76}
+      .zl{font-size:12px;font-weight:700;letter-spacing:.08em}
+      .h{font-size:14px;font-weight:600}.h:not([fill]){fill:#0f1f2a}
+      .s{font-size:12px}.s:not([fill]){fill:#5b6b76}
+      .t{font-size:12.5px}.t:not([fill]){fill:#33424c}
+      .m{font-family:Consolas,'Cascadia Mono',Menlo,monospace;font-size:11.5px}.m:not([fill]){fill:#3d4b55}
+      .lbl{font-size:12px;font-weight:600}.lbl:not([fill]){fill:#33424c}
+      .node{fill:#fff;stroke:#c9d3da;stroke-width:1.2}
+      .life{stroke:#9aa8b3;stroke-width:1.3;stroke-dasharray:5 5}
+      .call{stroke:#2563c9;stroke-width:2;fill:none}
+      .ret{stroke:#2563c9;stroke-width:1.6;fill:none;stroke-dasharray:6 4}
+      .act{fill:#dce8fb;stroke:#2563c9;stroke-width:1}
+      .badge{fill:#2563c9}
+      .bt{font-size:11px;font-weight:700;fill:#fff}
+      .frame{fill:none;stroke:#7a4fc4;stroke-width:1.4}
+      .tab{fill:#f3eefb;stroke:#7a4fc4;stroke-width:1.2}
+      .note{fill:#fffbea;stroke:#e7cf7a}
+    </style>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="140%"><feDropShadow dx="0" dy="1.5" stdDeviation="2.2" flood-color="#0f1f2a" flood-opacity=".10"/></filter>
+    <marker id="mb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563c9"/></marker>
+    <marker id="mo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M1,1 L9,5 L1,9" fill="none" stroke="#2563c9" stroke-width="1.6"/></marker>
+    <symbol id="user" viewBox="-14 -14 28 28"><circle cy="-5" r="6" fill="#5b7a99"/><path d="M-11 12 C-11 2 11 2 11 12 Z" fill="#5b7a99"/></symbol>
+  </defs>
+
+  <rect x="0.5" y="0.5" width="1499" height="1019" rx="18" fill="#ffffff" stroke="#dfe5ea"/>
+  <text class="title" x="40" y="50">How a Genie One question is answered · step by step</text>
+  <text class="subtitle" x="40" y="75">Genie One is asynchronous: genie_ask returns at once with IDs, and the caller must keep polling until the answer is complete.</text>
+
+  <!-- side bands -->
+  <rect x="40" y="92" width="660" height="830" rx="14" fill="#f1f6fe" stroke="#94b6ea" stroke-dasharray="7 5"/>
+  <text class="zl" x="58" y="114" fill="#1d5fbf">MICROSOFT SIDE</text>
+  <rect x="712" y="92" width="748" height="830" rx="14" fill="#fef5f2" stroke="#eea48f" stroke-dasharray="7 5"/>
+  <text class="zl" x="730" y="114" fill="#c8442b">DATABRICKS SIDE · PRIVATE WORKSPACE</text>
+
+  <!-- participants -->
+  <rect class="node" filter="url(#sh)" x="60" y="126" width="150" height="62" rx="10"/>
+  <use href="#user" x="70" y="141" width="30" height="30"/>
+  <text class="h" x="106" y="153">Manager</text><text class="m" x="106" y="172">mgr.user</text>
+  <rect class="node" filter="url(#sh)" x="265" y="126" width="190" height="62" rx="10"/>
+  <text class="h" x="360" y="153" text-anchor="middle">Copilot Studio agent</text>
+  <text class="s" x="360" y="172" text-anchor="middle">or any MCP client</text>
+  <rect class="node" filter="url(#sh)" x="495" y="126" width="180" height="62" rx="10"/>
+  <text class="h" x="585" y="153" text-anchor="middle">Genie One connector</text>
+  <text class="s" x="585" y="172" text-anchor="middle">Entra ID · acts as the user</text>
+  <rect class="node" filter="url(#sh)" x="720" y="126" width="170" height="62" rx="10" stroke="#2563c9" stroke-width="1.6"/>
+  <text class="h" x="805" y="153" text-anchor="middle">Genie One MCP</text>
+  <text class="m" x="805" y="172" text-anchor="middle" style="font-size:10.5px">system.ai.genie_one_mcp</text>
+  <rect class="node" filter="url(#sh)" x="930" y="126" width="170" height="62" rx="10"/>
+  <text class="h" x="1015" y="153" text-anchor="middle">Genie agents</text>
+  <text class="s" x="1015" y="172" text-anchor="middle">Completions · Production</text>
+  <rect class="node" filter="url(#sh)" x="1135" y="126" width="160" height="62" rx="10"/>
+  <text class="h" x="1215" y="153" text-anchor="middle">SQL warehouse</text>
+  <text class="s" x="1215" y="172" text-anchor="middle">serverless · 2X-Small</text>
+  <rect x="1320" y="126" width="128" height="62" rx="10" fill="#f6f2fc" stroke="#bba6e0" stroke-width="1.3" filter="url(#sh)"/>
+  <text class="h" x="1384" y="153" text-anchor="middle">Unity Catalog</text>
+  <text class="s" x="1384" y="172" text-anchor="middle">user's grants</text>
+
+  <!-- lifelines -->
+  <line class="life" x1="135" y1="188" x2="135" y2="910"/>
+  <line class="life" x1="360" y1="188" x2="360" y2="910"/>
+  <line class="life" x1="585" y1="188" x2="585" y2="910"/>
+  <line class="life" x1="805" y1="188" x2="805" y2="910"/>
+  <line class="life" x1="1015" y1="188" x2="1015" y2="910"/>
+  <line class="life" x1="1215" y1="188" x2="1215" y2="910"/>
+  <line class="life" x1="1384" y1="188" x2="1384" y2="910"/>
+
+  <!-- activations -->
+  <rect class="act" x="354" y="225" width="12" height="660" rx="3"/>
+  <rect class="act" x="799" y="325" width="12" height="525" rx="3"/>
+  <rect class="act" x="1009" y="425" width="12" height="235" rx="3"/>
+  <rect class="act" x="1209" y="515" width="12" height="100" rx="3"/>
+
+  <!-- 1 -->
+  <line class="call" x1="135" y1="232" x2="352" y2="232" marker-end="url(#mb)"/>
+  <circle class="badge" cx="148" cy="219" r="10"/><text class="bt" x="148" y="223" text-anchor="middle">1</text>
+  <text class="lbl" x="164" y="223">asks a cross-domain question</text>
+  <!-- 2 -->
+  <line class="call" x1="366" y1="282" x2="583" y2="282" marker-end="url(#mb)"/>
+  <circle class="badge" cx="380" cy="269" r="10"/><text class="bt" x="380" y="273" text-anchor="middle">2</text>
+  <text class="m" x="396" y="273" style="font-weight:700">genie_ask(question)</text>
+  <!-- 3 -->
+  <line class="call" x1="585" y1="332" x2="797" y2="332" marker-end="url(#mb)"/>
+  <circle class="badge" cx="599" cy="319" r="10"/><text class="bt" x="599" y="323" text-anchor="middle">3</text>
+  <text class="lbl" x="615" y="323">+ user's Entra token</text>
+  <text class="s" x="615" y="350">over Private Link</text>
+  <!-- 4 -->
+  <line class="ret" x1="799" y1="384" x2="368" y2="384" marker-end="url(#mo)"/>
+  <circle class="badge" cx="785" cy="371" r="10"/><text class="bt" x="785" y="375" text-anchor="middle">4</text>
+  <text class="m" x="770" y="375" text-anchor="end">conversation_id, response_id · status in_progress</text>
+  <!-- 5 -->
+  <line class="call" x1="811" y1="432" x2="1007" y2="432" marker-end="url(#mb)"/>
+  <circle class="badge" cx="825" cy="419" r="10"/><text class="bt" x="825" y="423" text-anchor="middle">5</text>
+  <text class="lbl" x="841" y="423">routes to agent(s)</text>
+  <rect class="note" x="828" y="444" width="168" height="54" rx="6"/>
+  <text class="s" x="838" y="462" fill="#6b5a10" style="font-size:11px">by title, description and</text>
+  <text class="s" x="838" y="477" fill="#6b5a10" style="font-size:11px">instructions; applies the</text>
+  <text class="s" x="838" y="492" fill="#6b5a10" style="font-size:11px">month-0 production rule</text>
+  <!-- 6 -->
+  <line class="call" x1="1021" y1="522" x2="1207" y2="522" marker-end="url(#mb)"/>
+  <circle class="badge" cx="1035" cy="509" r="10"/><text class="bt" x="1035" y="513" text-anchor="middle">6</text>
+  <text class="lbl" x="1051" y="513">SQL, run as the user</text>
+  <!-- 7 -->
+  <line class="call" x1="1221" y1="562" x2="1382" y2="562" marker-end="url(#mb)"/>
+  <circle class="badge" cx="1235" cy="549" r="10"/><text class="bt" x="1235" y="553" text-anchor="middle">7</text>
+  <text class="lbl" x="1251" y="553">check grants</text>
+  <!-- 8 -->
+  <line class="ret" x1="1384" y1="604" x2="1223" y2="604" marker-end="url(#mo)"/>
+  <circle class="badge" cx="1370" cy="591" r="10"/><text class="bt" x="1370" y="595" text-anchor="middle">8</text>
+  <text class="lbl" x="1354" y="595" text-anchor="end">permitted rows only</text>
+  <!-- 9 -->
+  <line class="ret" x1="1009" y1="650" x2="813" y2="650" marker-end="url(#mo)"/>
+  <circle class="badge" cx="995" cy="637" r="10"/><text class="bt" x="995" y="641" text-anchor="middle">9</text>
+  <text class="lbl" x="979" y="641" text-anchor="end">answer + result table</text>
+
+  <!-- loop -->
+  <rect class="frame" x="250" y="676" width="640" height="122" rx="8"/>
+  <path class="tab" d="M250 684 a8 8 0 0 1 8 -8 h258 v22 l-10 10 h-256 z"/>
+  <text class="lbl" x="262" y="694" fill="#5b3a9e">loop · until completed (typically 15–60 s)</text>
+  <line class="call" x1="366" y1="735" x2="797" y2="735" marker-end="url(#mb)"/>
+  <circle class="badge" cx="381" cy="722" r="10"/><text class="bt" x="381" y="726" text-anchor="middle" style="font-size:10px">10</text>
+  <text class="m" x="397" y="726" style="font-weight:700">genie_poll_response(conversation_id, response_id)</text>
+  <line class="ret" x1="799" y1="780" x2="368" y2="780" marker-end="url(#mo)"/>
+  <circle class="badge" cx="784" cy="767" r="10"/><text class="bt" x="784" y="771" text-anchor="middle" style="font-size:10px">11</text>
+  <text class="lbl" x="768" y="771" text-anchor="end">in_progress … then completed + answer</text>
+
+  <!-- opt -->
+  <rect class="frame" x="250" y="810" width="640" height="56" rx="8" style="stroke:#7b8a96"/>
+  <path d="M250 818 a8 8 0 0 1 8 -8 h140 v20 l-10 10 h-138 z" fill="#f1f4f7" stroke="#7b8a96"/>
+  <text class="lbl" x="262" y="827" fill="#4b5a66">opt · full rows</text>
+  <line class="call" x1="366" y1="850" x2="797" y2="850" marker-end="url(#mb)"/>
+  <circle class="badge" cx="420" cy="838" r="10"/><text class="bt" x="420" y="842" text-anchor="middle" style="font-size:10px">12</text>
+  <text class="m" x="436" y="842" style="font-weight:700">genie_get_query_result(…)</text>
+
+  <!-- 13 -->
+  <line class="ret" x1="354" y1="892" x2="137" y2="892" marker-end="url(#mo)"/>
+  <circle class="badge" cx="340" cy="879" r="10"/><text class="bt" x="340" y="883" text-anchor="middle" style="font-size:10px">13</text>
+  <text class="lbl" x="324" y="883" text-anchor="end">answer · table · SQL link</text>
+
+  <!-- notes -->
+  <rect class="note" x="40" y="936" width="700" height="72" rx="10"/>
+  <text class="h" x="58" y="958" fill="#6b5a10">Why polling matters</text>
+  <text class="t" x="58" y="978">Use a model that reliably calls tools; otherwise it can stop after genie_ask and never show the answer.</text>
+  <text class="t" x="58" y="996">Copilot Studio instruction: “Always continue polling the Genie Agent until you receive a response.”</text>
+  <rect class="node" x="760" y="936" width="700" height="72" rx="10"/>
+  <text class="h" x="778" y="958">Measured in the reference build</text>
+  <text class="t" x="778" y="978">Single-domain question: 56 s end to end (Rig 12, 17.52 days). Cross-domain question: 18 s.</text>
+  <text class="t" x="778" y="996">The cross-domain answer cited the Production agent's rule that month 0 is the completion month.</text>
+</svg>

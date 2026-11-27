@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="710" viewBox="0 0 1500 710" role="img" aria-label="Governance and security controls by layer. Identity: no client secrets, federated credential, assignment required, delegated permission only. Power Platform: managed production environment, security group, data policy with business and blocked connectors and custom connector rules, connector shared through a Dataverse group team, Dataverse auditing. Copilot Studio: end user authentication, fixed model, no web knowledge, sharing limited to one group. Azure: delete locks, budget alerts, private DNS, peering, Bastion. Databricks: public access disabled, Unity Catalog grants per group, Genie spaces shared per group, IP access list kept, audit log.">
+  <defs>
+    <style>
+      text{font-family:'Segoe UI',Helvetica,Arial,sans-serif}
+      .title{font-size:25px;font-weight:700;fill:#0f1f2a}
+      .subtitle{font-size:14px;fill:#5b6b76}
+      .hdr{font-size:15px;font-weight:700;fill:#fff}
+      .hs{font-size:11.5px;fill:#eef3f7}
+      .t{font-size:12.5px;fill:#33424c}
+      .s{font-size:11.5px;fill:#5b6b76}
+      .card{fill:#fff;stroke:#d6dee4;stroke-width:1.2}
+    </style>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="140%"><feDropShadow dx="0" dy="1.5" stdDeviation="2.2" flood-color="#0f1f2a" flood-opacity=".10"/></filter>
+    <symbol id="ok" viewBox="-9 -9 18 18"><circle r="8.5" fill="#1f8a5b"/><path d="M-4 0.2 L-1.2 3 L4 -2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="rec" viewBox="-9 -9 18 18"><circle r="8" fill="#fff" stroke="#d98a00" stroke-width="1.6"/><path d="M0 -4 V1" stroke="#d98a00" stroke-width="2" stroke-linecap="round"/><circle cy="4" r="1.2" fill="#d98a00"/></symbol>
+  </defs>
+
+  <rect x="0.5" y="0.5" width="1499" height="709" rx="18" fill="#fff" stroke="#dfe5ea"/>
+  <text class="title" x="40" y="50">Governance and security controls · defence in depth</text>
+  <text class="subtitle" x="40" y="76">Each layer limits who can reach the data and how. The data boundary itself is always Unity Catalog, evaluated for the signed-in user.</text>
+  <use href="#ok" x="1180" y="62" width="16" height="16"/><text class="s" x="1202" y="75">applied</text>
+  <use href="#rec" x="1262" y="62" width="16" height="16"/><text class="s" x="1284" y="75">recommended for production</text>
+
+  <!-- column template: x, width 276 -->
+  <g filter="url(#sh)">
+    <rect class="card" x="30" y="105" width="276" height="520" rx="12"/>
+    <rect class="card" x="317" y="105" width="276" height="520" rx="12"/>
+    <rect class="card" x="604" y="105" width="276" height="520" rx="12"/>
+    <rect class="card" x="891" y="105" width="276" height="520" rx="12"/>
+    <rect class="card" x="1178" y="105" width="292" height="520" rx="12"/>
+  </g>
+  <path d="M30,117 a12,12 0 0 1 12,-12 h252 a12,12 0 0 1 12,12 v43 h-276 z" fill="#7c4dcc"/>
+  <text class="hdr" x="48" y="132">1 · Identity</text><text class="hs" x="48" y="150">Microsoft Entra ID</text>
+  <path d="M317,117 a12,12 0 0 1 12,-12 h252 a12,12 0 0 1 12,12 v43 h-276 z" fill="#1d5fbf"/>
+  <text class="hdr" x="335" y="132">2 · Power Platform</text><text class="hs" x="335" y="150">environment · data policy · sharing</text>
+  <path d="M604,117 a12,12 0 0 1 12,-12 h252 a12,12 0 0 1 12,12 v43 h-276 z" fill="#2f7fd8"/>
+  <text class="hdr" x="622" y="132">3 · Copilot Studio agent</text><text class="hs" x="622" y="150">tools · model · channels</text>
+  <path d="M891,117 a12,12 0 0 1 12,-12 h252 a12,12 0 0 1 12,12 v43 h-276 z" fill="#1f7a4d"/>
+  <text class="hdr" x="909" y="132">4 · Azure</text><text class="hs" x="909" y="150">network · resources · cost</text>
+  <path d="M1178,117 a12,12 0 0 1 12,-12 h268 a12,12 0 0 1 12,12 v43 h-292 z" fill="#c8442b"/>
+  <text class="hdr" x="1196" y="132">5 · Azure Databricks</text><text class="hs" x="1196" y="150">workspace · Unity Catalog · Genie</text>
+
+  <!-- identity -->
+  <g>
+    <use href="#ok" x="44" y="178" width="16" height="16"/><text class="t" x="66" y="191">No client secrets</text><text class="s" x="66" y="208">federated credential only</text>
+    <use href="#ok" x="44" y="228" width="16" height="16"/><text class="t" x="66" y="241">Delegated permission only</text><text class="s" x="66" y="258">AzureDatabricks user_impersonation</text>
+    <use href="#ok" x="44" y="278" width="16" height="16"/><text class="t" x="66" y="291">Admin consent granted</text><text class="s" x="66" y="308">no per-user consent prompts</text>
+    <use href="#ok" x="44" y="328" width="16" height="16"/><text class="t" x="66" y="341">Assignment required</text><text class="s" x="66" y="358">only grp-genie-copilot-users</text>
+    <use href="#ok" x="44" y="378" width="16" height="16"/><text class="t" x="66" y="391">Single-tenant app</text><text class="s" x="66" y="408">redirect URI = connector only</text>
+    <use href="#rec" x="44" y="428" width="16" height="16"/><text class="t" x="66" y="441">Second app owner</text><text class="s" x="66" y="458">break-glass admin</text>
+    <use href="#rec" x="44" y="478" width="16" height="16"/><text class="t" x="66" y="491">Conditional Access</text><text class="s" x="66" y="508">MFA, compliant device</text>
+  </g>
+  <!-- power platform -->
+  <g>
+    <use href="#ok" x="331" y="178" width="16" height="16"/><text class="t" x="353" y="191">Managed, Production</text><text class="s" x="353" y="208">security group on environment</text>
+    <use href="#ok" x="331" y="228" width="16" height="16"/><text class="t" x="353" y="241">VNet enterprise policy</text><text class="s" x="353" y="258">connectors run in your subnets</text>
+    <use href="#ok" x="331" y="278" width="16" height="16"/><text class="t" x="353" y="291">Data policy · Business</text><text class="s" x="353" y="308">Dataverse · Teams · Databricks</text>
+    <use href="#ok" x="331" y="328" width="16" height="16"/><text class="t" x="353" y="341">Data policy · Blocked</text><text class="s" x="353" y="358">HTTP · anonymous chat · Direct Line</text><text class="s" x="353" y="374">public web knowledge · social channels</text>
+    <use href="#ok" x="331" y="394" width="16" height="16"/><text class="t" x="353" y="407">Custom connector rules</text><text class="s" x="353" y="424">host rule → Business; * → Blocked</text>
+    <use href="#ok" x="331" y="444" width="16" height="16"/><text class="t" x="353" y="457">Connector shared “Can view”</text><text class="s" x="353" y="474">via Dataverse group team</text>
+    <use href="#ok" x="331" y="494" width="16" height="16"/><text class="t" x="353" y="507">Dataverse auditing on</text><text class="s" x="353" y="524">incl. user access auditing</text>
+    <use href="#rec" x="331" y="544" width="16" height="16"/><text class="t" x="353" y="557">Backup retention 28 days</text>
+    <use href="#rec" x="331" y="580" width="16" height="16"/><text class="t" x="353" y="593">Sharing limits for individuals</text>
+  </g>
+  <!-- copilot studio -->
+  <g>
+    <use href="#ok" x="618" y="178" width="16" height="16"/><text class="t" x="640" y="191">End user account on tools</text><text class="s" x="640" y="208">never maker credentials</text>
+    <use href="#ok" x="618" y="228" width="16" height="16"/><text class="t" x="640" y="241">Answers only from Genie</text><text class="s" x="640" y="258">web search and Work IQ removed</text>
+    <use href="#ok" x="618" y="278" width="16" height="16"/><text class="t" x="640" y="291">Fixed model</text><text class="s" x="640" y="308">predictable tool use</text>
+    <use href="#ok" x="618" y="328" width="16" height="16"/><text class="t" x="640" y="341">“Never invent numbers”</text><text class="s" x="640" y="358">denied data is stated plainly</text>
+    <use href="#ok" x="618" y="378" width="16" height="16"/><text class="t" x="640" y="391">Shared with one group</text><text class="s" x="640" y="408">org-wide sharing off</text>
+    <use href="#ok" x="618" y="428" width="16" height="16"/><text class="t" x="640" y="441">Channels: Teams + M365 only</text><text class="s" x="640" y="458">sign-in enforced by data policy</text>
+    <use href="#rec" x="618" y="478" width="16" height="16"/><text class="t" x="640" y="491">Change control</text><text class="s" x="640" y="508">test in New chat, then publish</text>
+  </g>
+  <!-- azure -->
+  <g>
+    <use href="#ok" x="905" y="178" width="16" height="16"/><text class="t" x="927" y="191">Delete locks</text><text class="s" x="927" y="208">VNets · policy · workspace · DNS</text><text class="s" x="927" y="224">endpoints · billing account</text>
+    <use href="#ok" x="905" y="244" width="16" height="16"/><text class="t" x="927" y="257">Budget with alerts</text><text class="s" x="927" y="274">50 / 80 / 100 % actual, 100 % forecast</text>
+    <use href="#ok" x="905" y="294" width="16" height="16"/><text class="t" x="927" y="307">Dedicated delegated subnets</text><text class="s" x="927" y="324">/26 in each region of the pair</text>
+    <use href="#ok" x="905" y="344" width="16" height="16"/><text class="t" x="927" y="357">Peering: VNet access only</text><text class="s" x="927" y="374">no forwarding, no gateway transit</text>
+    <use href="#ok" x="905" y="394" width="16" height="16"/><text class="t" x="927" y="407">Private DNS on both VNets</text><text class="s" x="927" y="424">auto-registration off</text>
+    <use href="#ok" x="905" y="444" width="16" height="16"/><text class="t" x="927" y="457">Admin via Bastion + NSG</text><text class="s" x="927" y="474">no public management ports</text>
+  </g>
+  <!-- databricks -->
+  <g>
+    <use href="#ok" x="1192" y="178" width="16" height="16"/><text class="t" x="1214" y="191">Public network access disabled</text><text class="s" x="1214" y="208">Private Link only; internet → 403</text>
+    <use href="#ok" x="1192" y="228" width="16" height="16"/><text class="t" x="1214" y="241">Unity Catalog grants per group</text><text class="s" x="1214" y="258">USE SCHEMA + SELECT per domain</text>
+    <use href="#ok" x="1192" y="278" width="16" height="16"/><text class="t" x="1214" y="291">Genie spaces shared per group</text><text class="s" x="1214" y="308">managers see all three</text>
+    <use href="#ok" x="1192" y="328" width="16" height="16"/><text class="t" x="1214" y="341">IP access list kept</text><text class="s" x="1214" y="358">protects if public access returns</text>
+    <use href="#ok" x="1192" y="378" width="16" height="16"/><text class="t" x="1214" y="391">GA Genie One endpoint only</text><text class="s" x="1214" y="408">no Beta or preview MCP endpoints</text>
+    <use href="#ok" x="1192" y="428" width="16" height="16"/><text class="t" x="1214" y="441">Audit log reviewed</text><text class="s" x="1214" y="458">identity + source IP per call</text>
+    <use href="#rec" x="1192" y="478" width="16" height="16"/><text class="t" x="1214" y="491">Restrict Genie One EXECUTE</text><text class="s" x="1214" y="508">to the users' group</text>
+  </g>
+
+  <rect x="30" y="640" width="1440" height="52" rx="12" fill="#f7f9fb" stroke="#e3e8ec"/>
+  <text class="t" x="50" y="662">One security group, grp-genie-copilot-users, is reused for the environment, the Entra app assignment, the agent sharing and the connector sharing.</text>
+  <text class="t" x="50" y="681">Onboarding is “add to the group and send the connection link”. Offboarding is “remove from the group”: Entra stops issuing tokens at once.</text>
+</svg>

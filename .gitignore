@@ -1,0 +1,17 @@
+# Credentials and local notes - never commit
+*.txt
+.env
+.env.*
+*.pem
+*.key
+
+# Terraform (if infrastructure code is added later)
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini

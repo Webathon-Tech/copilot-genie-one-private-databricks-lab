@@ -1,0 +1,202 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="880" viewBox="0 0 1500 880" role="img" aria-label="Private workspace network: an admin laptop connects by RDP from one approved IP to a Windows jumpbox inside vnet-genie-demo. The jumpbox reaches the Databricks workspace front end and browser sign-in through two private endpoints over Private Link, resolved by a private DNS zone. Any request from the public internet is refused with HTTP 403. Databricks serverless compute runs Genie's SQL and Unity Catalog checks grants.">
+  <defs>
+    <style>
+      text{font-family:'Segoe UI',Helvetica,Arial,sans-serif}
+      .title{font-size:25px;font-weight:700;fill:#0f1f2a}
+      .subtitle{font-size:14px;fill:#5b6b76}
+      .zl{font-size:12px;font-weight:700;letter-spacing:.08em}
+      .h{font-size:14px;font-weight:600}.h:not([fill]){fill:#0f1f2a}
+      .s{font-size:12px}.s:not([fill]){fill:#5b6b76}
+      .m{font-family:Consolas,'Cascadia Mono',Menlo,monospace;font-size:11.5px}.m:not([fill]){fill:#3d4b55}
+      .lbl{font-size:11.5px;font-weight:600}.lbl:not([fill]){fill:#33424c}
+      .node{fill:#fff;stroke:#c9d3da;stroke-width:1.2}
+      .zone{stroke-width:1.4;stroke-dasharray:7 5}
+      .z-ppl{fill:#f6f8fa;stroke:#c3ccd3}
+      .z-az{fill:#eff8f3;stroke:#86c4a2}
+      .z-dbx{fill:#fef5f2;stroke:#eea48f}
+      .band{fill:#ffffff;stroke:#b6dcc6;stroke-width:1.1;fill-opacity:.75}
+      .ghost{fill:#f4f6f8;stroke:#b9c3cb;stroke-dasharray:4 3}
+      .a{stroke:#2563c9;stroke-width:2;fill:none}
+      .ag{fill:none}
+      .ak{stroke:#7b8a96;stroke-width:1.6;fill:none}
+      .ar{stroke:#c0392b;stroke-width:1.8;fill:none;stroke-dasharray:7 5}
+    </style>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="140%"><feDropShadow dx="0" dy="1.5" stdDeviation="2.2" flood-color="#0f1f2a" flood-opacity=".10"/></filter>
+    <marker id="mb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563c9"/></marker>
+    <marker id="mg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f8a5b"/></marker>
+    <marker id="mk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7b8a96"/></marker>
+    <marker id="mr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/></marker>
+    <symbol id="no" viewBox="-9 -9 18 18"><circle r="8.5" fill="#c0392b"/><path d="M-3.5 -3.5 L3.5 3.5 M3.5 -3.5 L-3.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="ok" viewBox="-9 -9 18 18"><circle r="8.5" fill="#1f8a5b"/><path d="M-4 0.2 L-1.2 3 L4 -2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="lock" viewBox="-8 -9 16 18"><rect x="-6" y="-1" width="12" height="9" rx="2" fill="#c0392b"/><path d="M-3.5 -1 V-4 A3.5 3.5 0 0 1 3.5 -4 V-1" stroke="#c0392b" stroke-width="1.8" fill="none"/></symbol>
+    <symbol id="laptop" viewBox="0 0 28 20"><rect x="4" y="1" width="20" height="13" rx="1.5" fill="#5b7a99"/><rect x="6" y="3" width="16" height="9" fill="#dce6ef"/><path d="M1 16 H27 L25 19 H3 Z" fill="#5b7a99"/></symbol>
+    <symbol id="globe" viewBox="-10 -10 20 20"><circle r="8.5" fill="none" stroke="#c0392b" stroke-width="1.6"/><ellipse rx="3.6" ry="8.5" fill="none" stroke="#c0392b" stroke-width="1.3"/><path d="M-8.5 0 H8.5 M-7 -4.5 H7 M-7 4.5 H7" stroke="#c0392b" stroke-width="1.1"/></symbol>
+  </defs>
+
+  <rect x="0.5" y="0.5" width="1499" height="879" rx="18" fill="#ffffff" stroke="#dfe5ea"/>
+  <text class="title" x="40" y="50">Private workspace network · a private workspace reached only through the jumpbox</text>
+  <text class="subtitle" x="40" y="75">Resource group rg-genie-demo, Canada Central. Every workspace call goes through a private endpoint; the internet gets HTTP 403.</text>
+
+  <!-- zones -->
+  <rect class="zone z-ppl" x="30" y="105" width="232" height="655" rx="14"/>
+  <text class="zl" x="48" y="131" fill="#5b6b76">OUTSIDE THE VNET</text>
+  <rect class="zone z-az" x="280" y="105" width="730" height="655" rx="14"/>
+  <text class="zl" x="298" y="131" fill="#1f7a4d">AZURE · rg-genie-demo · CANADA CENTRAL</text>
+  <rect class="zone z-dbx" x="1030" y="105" width="440" height="655" rx="14"/>
+  <text class="zl" x="1048" y="131" fill="#c8442b">AZURE DATABRICKS · MICROSOFT-MANAGED</text>
+
+  <!-- outside -->
+  <rect x="45" y="142" width="202" height="72" rx="10" fill="#fff6f5" stroke="#e6a3a3" stroke-dasharray="5 4"/>
+  <use href="#globe" x="58" y="156" width="20" height="20"/>
+  <text class="h" x="86" y="171">Any internet client</text>
+  <text class="s" x="86" y="190">even with a valid token</text>
+  <text class="s" x="86" y="205">→ refused (HTTP 403)</text>
+
+  <rect class="node" filter="url(#sh)" x="45" y="318" width="202" height="104" rx="10"/>
+  <text class="h" x="146" y="343" text-anchor="middle">Azure portal · ARM</text>
+  <text class="s" x="146" y="362" text-anchor="middle">management plane (public)</text>
+  <text class="s" x="146" y="380" text-anchor="middle">creates and configures</text>
+  <text class="s" x="146" y="397" text-anchor="middle">resources; never reaches</text>
+  <text class="s" x="146" y="414" text-anchor="middle">the workspace's data</text>
+
+  <rect class="node" filter="url(#sh)" x="45" y="525" width="202" height="72" rx="10" stroke="#2563c9" stroke-width="1.5"/>
+  <use href="#laptop" x="58" y="535" width="28" height="20"/>
+  <text class="h" x="94" y="550">Admin laptop</text>
+  <text class="s" x="58" y="572">az CLI · RDP client</text>
+  <text class="s" x="58" y="588">one approved public IP</text>
+
+  <rect class="node" filter="url(#sh)" x="45" y="650" width="202" height="96" rx="10"/>
+  <text class="h" x="146" y="674" text-anchor="middle">Databricks account console</text>
+  <text class="m" x="146" y="693" text-anchor="middle" style="font-size:10.5px">accounts.azuredatabricks.net</text>
+  <text class="s" x="146" y="712" text-anchor="middle">users · groups · metastore</text>
+  <text class="s" x="146" y="730" text-anchor="middle">public · identity only</text>
+
+  <line class="ak" x1="146" y1="525" x2="146" y2="424" marker-end="url(#mk)"/>
+  <text class="s" x="154" y="478">az CLI</text>
+  <line class="ak" x1="146" y1="597" x2="146" y2="648" marker-end="url(#mk)"/>
+  <text class="s" x="154" y="627">browser</text>
+
+  <!-- vnet -->
+  <rect x="298" y="148" width="694" height="474" rx="12" fill="#e4f3ea" stroke="#86c4a2" stroke-width="1.3"/>
+  <text class="m" x="316" y="170" style="font-weight:700;fill:#1f7a4d;font-size:12.5px">vnet-genie-demo · 10.10.0.0/20</text>
+
+  <rect class="band" x="314" y="182" width="662" height="80" rx="8"/>
+  <text class="h" x="330" y="205">snet-dbx-host</text>
+  <text class="m" x="330" y="223">10.10.0.0/24</text>
+  <text class="s" x="330" y="241">delegated to Databricks · nsg-dbx</text>
+  <rect class="ghost" x="725" y="194" width="232" height="56" rx="8"/>
+  <text class="h" x="841" y="217" text-anchor="middle" fill="#6b7a86">Classic compute hosts</text>
+  <text class="s" x="841" y="235" text-anchor="middle">unused · no NAT gateway</text>
+
+  <rect class="band" x="314" y="270" width="662" height="80" rx="8"/>
+  <text class="h" x="330" y="293">snet-dbx-container</text>
+  <text class="m" x="330" y="311">10.10.1.0/24</text>
+  <text class="s" x="330" y="329">delegated to Databricks · nsg-dbx</text>
+  <rect class="ghost" x="725" y="282" width="232" height="56" rx="8"/>
+  <text class="h" x="841" y="305" text-anchor="middle" fill="#6b7a86">Classic compute containers</text>
+  <text class="s" x="841" y="323" text-anchor="middle">unused · serverless only</text>
+
+  <rect class="band" x="314" y="358" width="662" height="124" rx="8"/>
+  <text class="h" x="330" y="381">snet-pe</text>
+  <text class="m" x="330" y="399">10.10.2.0/26</text>
+  <text class="s" x="330" y="417">private endpoints, auto-approved</text>
+  <rect class="node" filter="url(#sh)" x="725" y="370" width="232" height="50" rx="8" stroke="#1f8a5b" stroke-width="1.5"/>
+  <text class="h" x="841" y="390" text-anchor="middle">UI / API endpoint</text>
+  <text class="m" x="841" y="410" text-anchor="middle" style="font-size:10.8px">databricks_ui_api · 10.10.2.4</text>
+  <rect class="node" filter="url(#sh)" x="725" y="426" width="232" height="50" rx="8" stroke="#1f8a5b" stroke-width="1.5"/>
+  <text class="h" x="841" y="446" text-anchor="middle">SSO endpoint</text>
+  <text class="m" x="841" y="466" text-anchor="middle" style="font-size:10.8px">browser_authentication · 10.10.2.5</text>
+
+  <rect class="band" x="314" y="490" width="662" height="122" rx="8"/>
+  <text class="h" x="330" y="512">snet-jumpbox</text>
+  <text class="m" x="330" y="530">10.10.2.64/27</text>
+  <text class="s" x="330" y="547">NSG: RDP only from the admin IP</text>
+  <rect class="node" filter="url(#sh)" x="725" y="502" width="232" height="100" rx="8" stroke="#2563c9" stroke-width="1.5"/>
+  <text class="h" x="841" y="523" text-anchor="middle">vm-jumpbox</text>
+  <text class="s" x="841" y="542" text-anchor="middle">Windows Server 2025 · D2as_v7</text>
+  <text class="m" x="841" y="561" text-anchor="middle">10.10.2.68</text>
+  <text class="s" x="841" y="580" text-anchor="middle">Edge browser for all workspace work</text>
+  <text class="s" x="841" y="596" text-anchor="middle">auto-shutdown schedule</text>
+
+  <rect class="node" filter="url(#sh)" x="298" y="642" width="337" height="108" rx="10" stroke="#86c4a2"/>
+  <text class="h" x="316" y="665">Private DNS zone</text>
+  <text class="m" x="316" y="684">privatelink.azuredatabricks.net</text>
+  <text class="m" x="316" y="702" style="font-size:10.8px">adb-1234567890123456.7 → 10.10.2.4</text>
+  <text class="m" x="316" y="720" style="font-size:10.8px">canadacentral.pl-auth   → 10.10.2.5</text>
+  <text class="s" x="316" y="739">linked to vnet-genie-demo</text>
+  <line class="ak" x1="466" y1="645" x2="466" y2="624" stroke-dasharray="4 3"/>
+
+  <rect class="node" filter="url(#sh)" x="655" y="642" width="337" height="108" rx="10" stroke="#eea48f"/>
+  <text class="h" x="673" y="666">Workspace resource · dbw-genie-demo</text>
+  <text class="s" x="673" y="688">Premium · VNet injection · no public IPs</text>
+  <use href="#lock" x="673" y="697" width="12" height="15"/>
+  <text class="s" x="690" y="709" style="fill:#a8321f;font-weight:600">public network access: Disabled</text>
+  <text class="m" x="673" y="732" style="font-size:10.8px">requiredNsgRules: NoAzureDatabricksRules</text>
+
+  <!-- databricks side -->
+  <rect x="1050" y="140" width="400" height="60" rx="10" fill="#fff6f5" stroke="#e6a3a3" stroke-dasharray="5 4"/>
+  <use href="#no" x="1064" y="160" width="20" height="20"/>
+  <text class="h" x="1094" y="164">Public endpoint</text>
+  <text class="s" x="1094" y="184">HTTP 403 · “Unauthorized network access to workspace”</text>
+
+  <rect class="node" filter="url(#sh)" x="1050" y="225" width="400" height="74" rx="10" stroke="#2563c9" stroke-width="1.4"/>
+  <text class="h" x="1250" y="248" text-anchor="middle">Genie agents · Genie One MCP</text>
+  <text class="s" x="1250" y="267" text-anchor="middle">Drilling Performance · Completions · Production</text>
+  <text class="m" x="1250" y="286" text-anchor="middle">system.ai.genie_one_mcp</text>
+
+  <rect class="node" filter="url(#sh)" x="1050" y="370" width="400" height="50" rx="8"/>
+  <text class="h" x="1250" y="390" text-anchor="middle">Workspace front end</text>
+  <text class="m" x="1250" y="410" text-anchor="middle" style="font-size:10.8px">adb-1234567890123456.7.azuredatabricks.net</text>
+  <rect class="node" filter="url(#sh)" x="1050" y="426" width="400" height="50" rx="8"/>
+  <text class="h" x="1250" y="446" text-anchor="middle">Browser single sign-on</text>
+  <text class="s" x="1250" y="466" text-anchor="middle">Entra ID sign-in, kept on the private path</text>
+
+  <rect x="1050" y="506" width="400" height="72" rx="10" fill="#f6f2fc" stroke="#bba6e0" stroke-width="1.3" filter="url(#sh)"/>
+  <text class="h" x="1250" y="532" text-anchor="middle">Unity Catalog metastore · Canada Central</text>
+  <text class="m" x="1250" y="552" text-anchor="middle">dbw_genie_demo · system.ai · system.access</text>
+  <text class="s" x="1250" y="567" text-anchor="middle" style="font-size:11px">grants decide what each user can read</text>
+
+  <rect class="node" filter="url(#sh)" x="1050" y="604" width="400" height="66" rx="10"/>
+  <text class="h" x="1250" y="628" text-anchor="middle">Serverless compute plane</text>
+  <text class="s" x="1250" y="647" text-anchor="middle">Serverless Starter Warehouse · AI Playground models</text>
+  <text class="s" x="1250" y="663" text-anchor="middle" style="font-size:11px">no VNet egress needed</text>
+
+  <rect class="node" x="1050" y="690" width="400" height="56" rx="10"/>
+  <use href="#ok" x="1064" y="708" width="18" height="18"/>
+  <text class="s" x="1092" y="713" style="fill:#33424c">Proven: a signed-in API call from the internet</text>
+  <text class="s" x="1092" y="730" style="fill:#33424c">returns 403; the same call from the jumpbox works.</text>
+
+  <!-- arrows -->
+  <polyline class="ar" points="247,178 266,178 266,93 1420,93 1420,138" marker-end="url(#mr)"/>
+  <rect x="772" y="85" width="136" height="17" rx="4" fill="#fff"/>
+  <text class="lbl" x="840" y="98" fill="#c0392b" text-anchor="middle" style="font-size:11px">public HTTPS: refused</text>
+
+  <line class="a" x1="247" y1="562" x2="723" y2="562" marker-end="url(#mb)"/>
+  <rect x="566" y="567" width="148" height="18" rx="4" fill="#fff"/>
+  <text class="lbl" x="640" y="580" text-anchor="middle" fill="#1d5fbf">RDP 3389 · one admin IP</text>
+
+  <polyline class="a" points="725,520 706,520 706,395 723,395" marker-end="url(#mb)"/>
+  <line class="a" x1="706" y1="451" x2="723" y2="451" marker-end="url(#mb)"/>
+  <text class="lbl" x="0" y="0" transform="translate(700 470) rotate(-90)" text-anchor="middle" fill="#1d5fbf" style="font-size:10.5px">HTTPS 443</text>
+
+  <line x1="957" y1="395" x2="1048" y2="395" style="stroke:#1f8a5b;stroke-width:2.4" marker-end="url(#mg)"/>
+  <line x1="957" y1="451" x2="1048" y2="451" style="stroke:#1f8a5b;stroke-width:2.4" marker-end="url(#mg)"/>
+  <text class="lbl" x="1002" y="388" text-anchor="middle" fill="#1f7a4d" style="font-size:10.5px">Private Link</text>
+  <text class="lbl" x="1002" y="444" text-anchor="middle" fill="#1f7a4d" style="font-size:10.5px">Private Link</text>
+
+  <line class="a" x1="1250" y1="370" x2="1250" y2="301" marker-end="url(#mb)"/>
+  <text class="lbl" x="1258" y="340">serves</text>
+  <polyline class="a" points="1450,262 1461,262 1461,637 1452,637" marker-end="url(#mb)"/>
+  <text class="lbl" x="1450" y="318" text-anchor="end" fill="#1d5fbf">runs SQL ↓</text>
+  <line class="a" x1="1250" y1="604" x2="1250" y2="580" marker-end="url(#mb)"/>
+  <text class="lbl" x="1258" y="594">checks grants</text>
+
+  <!-- legend -->
+  <rect class="node" x="30" y="778" width="1440" height="86" rx="12"/>
+  <text class="h" x="50" y="803">Legend</text>
+  <line x1="50" y1="826" x2="96" y2="826" style="stroke:#1f8a5b;stroke-width:2.4" marker-end="url(#mg)"/><text class="s" x="106" y="830">Private Link (never leaves the private network)</text>
+  <line class="a" x1="410" y1="826" x2="456" y2="826" marker-end="url(#mb)"/><text class="s" x="466" y="830">admin path and in-platform calls</text>
+  <line class="ak" x1="700" y1="826" x2="746" y2="826" marker-end="url(#mk)"/><text class="s" x="756" y="830">management and identity (public, no data)</text>
+  <line class="ar" x1="1040" y1="826" x2="1086" y2="826" marker-end="url(#mr)"/><text class="s" x="1096" y="830">blocked public path</text>
+  <text class="s" x="50" y="852" style="fill:#33424c">Key facts: no NAT gateway, so serverless compute only · RDP allowed from one admin IP · public network access Disabled with NoAzureDatabricksRules · both private endpoints auto-approved.</text>
+</svg>
